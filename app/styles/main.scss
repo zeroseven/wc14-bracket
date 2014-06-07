@@ -16,6 +16,10 @@
 @import "objects/hexagon";
 @import "objects/knockout";
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: $text-color;
