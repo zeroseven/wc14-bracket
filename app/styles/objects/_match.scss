@@ -1,0 +1,8 @@
+.knockout {
+  margin-top: $hexagon-size / 3 - $hexagon-border;
+  @include flexbox;
+}
+
+.match--knockout {
+  text-align: center;
+}

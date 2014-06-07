@@ -1,62 +1,58 @@
-$hexagon-size: 150px;
-
 .hexagon {
-  position: relative;
-  margin-top: $hexagon-size;
-  width: $hexagon-size;
-  height: $hexagon-size / sqrt(3); // TODO: check if hexagon height is correct
-  @include background-image(linear-gradient(left, $group-a 50%, $group-b 50%));
-  // background-image: ; // $group-b;
+	@include flex(0, 0, $hexagon-size - $hexagon-border);
+}
 
-  &:before, &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-    width: inherit;
-    height: inherit;
-    border: inherit;
-    background: inherit;
-  }
+.hexagon--full {
+	@include flex(0, 0, $hexagon-size);
+}
 
-  &:before {
-    // display: none;
-    -webkit-transform: rotateZ(-60deg);
-    @include background-image(linear-gradient(150deg, $group-a 50%, $group-b 50%));
-  }
+.hexagon--push {
+	margin-left: ($hexagon-size - $hexagon-border) / 2;
+}
 
-  &:after {
-    -webkit-transform: rotateZ(60deg);
-    @include background-image(linear-gradient(30deg, $group-a 50%, $group-b 50%));
-  }
+.hexagon--spacer {
+	@include flex(0, 0, $hexagon-size - $hexagon-border * 2);
+}
+
+.hexagon--a-b {
+	@include hexagon($hexagon-size, $group-a, $group-b);
+}
+
+.hexagon--b-a {
+	@include hexagon($hexagon-size, $group-b, $group-a);
+}
+
+.hexagon--c-d {
+	@include hexagon($hexagon-size, $group-c, $group-d);
+}
+
+.hexagon--d-c {
+	@include hexagon($hexagon-size, $group-d, $group-c);
+}
+
+.hexagon--e-f {
+	@include hexagon($hexagon-size, $group-e, $group-f);
+}
+
+.hexagon--f-e {
+	@include hexagon($hexagon-size, $group-f, $group-e);
+}
+
+.hexagon--g-h {
+	@include hexagon($hexagon-size, $group-g, $group-h);
+}
+
+.hexagon--h-g {
+	@include hexagon($hexagon-size, $group-h, $group-g);
+}
+
+.hexagon--qf {
+	@include hexagon($hexagon-size, $quarter-final);
 }
 
 .hexagon__content {
-  position: absolute;
-  left: 5px;
-  top: 5px / sqrt(3);
-  width: $hexagon-size - 10px;
-  height: ($hexagon-size - 10px) / sqrt(3);
-  z-index: 1;
-  background-color: white;
-
-  &:before, &:after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-    width: inherit;
-    height: inherit;
-    border: inherit;
-    background: inherit;
-    z-index: -1;
-  }
-
-  &:before {
-    -webkit-transform: rotateZ(-60deg);
-  }
-
-  &:after {
-    -webkit-transform: rotateZ(60deg);
-  }
+	@include hexagon($hexagon-size - $hexagon-border * 2, white);
+	left: $hexagon-border;
+	top: $hexagon-border / sqrt(3);
+	z-index: 1;
 }

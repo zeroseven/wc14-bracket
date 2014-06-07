@@ -1,0 +1,40 @@
+@mixin hexagon($width, $color-left, $color-right: false) {
+	position: relative;
+	width: $width;
+	height: $width / sqrt(3); // TODO: check if hexagon height is correct
+	@if $color-right != false {
+		@include background-image(linear-gradient(left, $color-left 50%, $color-right 50%));
+	} @else {
+		background-color: $color-left;
+	}
+
+	&:before, &:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: '';
+		width: inherit;
+		height: inherit;
+		border: inherit;
+		background: inherit;
+		z-index: -1;
+	}
+
+	&:before {
+		@include transform(rotateZ(-60deg));
+		@if $color-right != false {
+			@include background-image(linear-gradient(150deg, $color-left 50%, $color-right 50%));
+		} @else {
+			background-color: $color-left;
+		}
+	}
+
+	&:after {
+		@include transform(rotateZ(60deg));
+		@if $color-right != false {
+			@include background-image(linear-gradient(30deg, $color-left 50%, $color-right 50%));
+		} @else {
+			background-color: $color-left;
+		}
+	}
+}

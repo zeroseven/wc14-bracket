@@ -12,10 +12,13 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
 
 @import "tools/variables";
-@import "compass/css3/images";
+@import "compass/css3";
+@import "sass-flex-mixin/flex";
+@import "tools/mixins";
 
 @import "objects/hexagon";
-@import "objects/knockout";
+@import "objects/match";
+@import "objects/flex";
 
 *, *:before, *:after {
   box-sizing: border-box;

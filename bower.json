@@ -7,7 +7,8 @@
     "underscore": "~1.6.0",
     "backbone": "~1.1.0",
     "modernizr": "~2.7.1",
-    "handlebars": "~1.3.0"
+    "handlebars": "~1.3.0",
+    "sass-flex-mixin": "mastastealth/sass-flex-mixin"
   },
   "devDependencies": {}
 }
