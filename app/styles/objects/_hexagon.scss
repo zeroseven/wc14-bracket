@@ -1,27 +1,22 @@
 $hexagon-size: 150px;
 
 .hexagon {
-  // display: inline-block;
   position: relative;
   margin-top: $hexagon-size;
   width: $hexagon-size;
   height: $hexagon-size / sqrt(3); // TODO: check if hexagon height is correct
-  border-width: 5px;
-  border-style: solid;
-  border-left-color: $group-a;
-  border-right-color: $group-b;
-  // background-color: $group-a;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
+  @include background(linear-gradient(left, $group-a 50%, $group-b 50%));
+  // background-image: ; // $group-b;
 
   &:before, &:after {
     position: absolute;
     top: 0;
+    left: 0;
     content: '';
-    width: $hexagon-size;
-    height: $hexagon-size / sqrt(3);
+    width: inherit;
+    height: inherit;
     border: inherit;
-    background-color: inherit;
+    background: inherit;
   }
 
   &:before {
@@ -35,5 +30,30 @@ $hexagon-size: 150px;
 
 .hexagon__content {
   position: absolute;
-  width: 100%;
+  left: 5px;
+  top: 5px / sqrt(3);
+  width: $hexagon-size - 10px;
+  height: ($hexagon-size - 10px) / sqrt(3);
+  z-index: 1;
+  background-color: white;
+
+  &:before, &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: inherit;
+    height: inherit;
+    border: inherit;
+    background: inherit;
+    z-index: -1;
+  }
+
+  &:before {
+    -webkit-transform: rotateZ(-60deg);
+  }
+
+  &:after {
+    -webkit-transform: rotateZ(60deg);
+  }
 }
