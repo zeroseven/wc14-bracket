@@ -16,6 +16,7 @@
 @import "sass-flex-mixin/flex";
 @import "tools/mixins";
 
+@import "objects/header";
 @import "objects/hexagon";
 @import "objects/match";
 @import "objects/flex";
@@ -27,4 +28,9 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: $text-color;
+  margin: 20px;
+}
+
+h1 {
+
 }
