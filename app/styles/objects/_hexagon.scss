@@ -1,0 +1,28 @@
+$hexagon-size: 150px;
+
+.hexagon {
+  margin-top: $hexagon-size;
+  width: $hexagon-size;
+  height: $hexagon-size / sqrt(3); // TODO: check if hexagon height is correct
+  border-width: 0 5px;
+  border-style: solid;
+  border-left-color: $group-a;
+  border-right-color: $group-b;
+
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: '';
+    display: block;
+    -webkit-transform: rotate(-60deg);
+    width: $hexagon-size;
+    height: $hexagon-size / sqrt(3);
+
+    border-width: 0 5px;
+    border-style: solid;
+    border-left-color: $group-a;
+    border-right-color: $group-b;
+    z-index: -1;
+  }
+}
