@@ -9,7 +9,9 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		url: '',
 
-		initialize: function() {},
+		initialize: function(attributes, options) {
+			this.teams = new WorldCupBracket.Collections.Team(options.teams);
+		},
 
 		defaults: {},
 

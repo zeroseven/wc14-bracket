@@ -1,14 +1,16 @@
 /*global WorldCupBracket, $*/
 'use strict';
 (function() {
-	var stadiums = null;
+	var stadiums = null,
+	    teams = null,
+	    groups = null;
 	var wcb = window.WorldCupBracket = {
 		Models: {},
 		Collections: {},
 		Views: {},
 		Routers: {},
 		init: function() {
-			stadiums = window.stadiums = new wcb.Collections.Stadium();
+			stadiums = new wcb.Collections.Stadium();
 			stadiums.reset([
 				{
 					id: '01',
@@ -71,6 +73,149 @@
 					city: 'Manaus'
 				}
 			]);
+
+			teams = new wcb.Collections.Team();
+			teams.reset([
+				{
+					id: 1,
+					name: 'Brasilien'
+				},
+				{
+					id: 2,
+					name: 'Kroatien'
+				},
+				{
+					id: 3,
+					name: 'Mexico'
+				},
+				{
+					id: 4,
+					name: 'Kamerun'
+				},
+				{
+					id: 5,
+					name: 'Spanien'
+				},
+				{
+					id: 6,
+					name: 'Niederlande'
+				},
+				{
+					id: 7,
+					name: 'Chile'
+				},
+				{
+					id: 8,
+					name: 'Australien'
+				},
+				{
+					id: 9,
+					name: 'Kolumbien'
+				},
+				{
+					id: 10,
+					name: 'Griechenland'
+				},
+				{
+					id: 11,
+					name: 'Elfenbeinküste'
+				},
+				{
+					id: 12,
+					name: 'Japan'
+				},
+				{
+					id: 13,
+					name: 'Uruguay'
+				},
+				{
+					id: 14,
+					name: 'Costa Rica'
+				},
+				{
+					id: 15,
+					name: 'England'
+				},
+				{
+					id: 16,
+					name: 'Italien'
+				},
+				{
+					id: 17,
+					name: 'Schweiz'
+				},
+				{
+					id: 18,
+					name: 'Ecuador'
+				},
+				{
+					id: 19,
+					name: 'Frankreich'
+				},
+				{
+					id: 20,
+					name: 'Honduras'
+				},
+				{
+					id: 21,
+					name: 'Argentinien'
+				},
+				{
+					id: 22,
+					name: 'Bosnien & Herzegowina'
+				},
+				{
+					id: 23,
+					name: 'Iran'
+				},
+				{
+					id: 24,
+					name: 'Nigeria'
+				},
+				{
+					id: 25,
+					name: 'Deutschland'
+				},
+				{
+					id: 26,
+					name: 'Portugal'
+				},
+				{
+					id: 27,
+					name: 'Ghana'
+				},
+				{
+					id: 28,
+					name: 'USA'
+				},
+				{
+					id: 29,
+					name: 'Belgien'
+				},
+				{
+					id: 30,
+					name: 'Algerien'
+				},
+				{
+					id: 31,
+					name: 'Russland'
+				},
+				{
+					id: 32,
+					name: 'Südkorea'
+				}
+			]);
+
+			groups = new wcb.Collections.Group();
+
+			['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
+				groups.add({
+					id: id
+				}, {
+					teams: teams.slice(index * 4, 4)
+				});
+			});
+			console.dir(groups);
 		}
 	};
 })();
