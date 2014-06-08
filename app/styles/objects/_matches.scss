@@ -1,6 +1,24 @@
+
 .knockout-matches {
-  margin-top: $hexagon-size / 3 - $hexagon-border;
   @include flexbox;
+  @include flex-direction(column);
+}
+
+.knockout__ui-group {
+  margin-top: $hexagon-size / 3 - $hexagon-border * 2;
+  @include flexbox;
+}
+
+.knockout__ui-group--one {
+  @include order(1);
+}
+
+.knockout__ui-group--two {
+  @include order(2);
+}
+
+.knockout__ui-group--three {
+  @include order(3);
 }
 
 .match--knockout {
