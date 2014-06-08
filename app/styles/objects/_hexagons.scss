@@ -14,6 +14,24 @@
 	@include flex(0, 0, $hexagon-size - $hexagon-border * 2);
 }
 
+.hexagon__background {
+	@include hexagon($hexagon-size - $hexagon-border * 2, white);
+	left: $hexagon-border;
+	top: $hexagon-border / sqrt(3);
+	z-index: 1;
+}
+
+.hexagon__content {
+	background-color: transparent;
+	position: relative;
+	width: $hexagon-size - $hexagon-border * 2;
+	height: $hexagon-size - $hexagon-border * 2;
+	top: - ($hexagon-size / 3 - $hexagon-border * 2);
+	padding: $half-spacing-unit;
+}
+
+// color definitions
+
 .hexagon--a-b {
 	@include hexagon($hexagon-size, $group-a, $group-b);
 }
@@ -48,11 +66,4 @@
 
 .hexagon--qf {
 	@include hexagon($hexagon-size, $quarter-final);
-}
-
-.hexagon__content {
-	@include hexagon($hexagon-size - $hexagon-border * 2, white);
-	left: $hexagon-border;
-	top: $hexagon-border / sqrt(3);
-	z-index: 1;
 }
