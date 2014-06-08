@@ -162,7 +162,8 @@
 				},
 				{
 					id: 22,
-					name: 'Bosnien & Herzegowina'
+					name: 'Bosnien & Herzegowina',
+					short: 'B.-Herzegowina'
 				},
 				{
 					id: 23,

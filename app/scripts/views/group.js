@@ -38,6 +38,14 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 			return this.model.teams.map(function(team) {
 				return team.get('name');
 			}).join(' | ');
+		},
+
+		idFirst: function() {
+			return this.model.id + '1';
+		},
+
+		idSecond: function() {
+			return this.model.id + '2';
 		}
 
 	});

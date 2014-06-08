@@ -17,6 +17,10 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		parse: function(response, options) {
 			return response;
+		},
+
+		short: function() {
+			return this.get('short') || this.get('name');
 		}
 	});
 

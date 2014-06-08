@@ -44,11 +44,11 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		home: function() {
-			return this.model.home.get('name');
+			return this.model.home.short();
 		},
 
 		guest: function() {
-			return this.model.guest.get('name');
+			return this.model.guest.short();
 		}
 
 	});
