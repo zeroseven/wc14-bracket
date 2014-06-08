@@ -5,11 +5,14 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 (function () {
     'use strict';
 
-    WorldCupBracket.Models.Game = Backbone.Model.extend({
+    WorldCupBracket.Models.Match = Backbone.Model.extend({
 
         url: '',
 
-        initialize: function() {
+        initialize: function(attributes, options) {
+          this.home = WorldCupBracket.teams.get(attributes['home']);
+          this.guest = WorldCupBracket.teams.get(attributes['guest']);
+          this.stadium = WorldCupBracket.stadiums.get(attributes['stadium']);
         },
 
         defaults: {

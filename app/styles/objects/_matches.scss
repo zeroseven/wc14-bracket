@@ -8,25 +8,42 @@
 }
 
 .group-matches {
+  margin-top: 100px;
   @include flexbox;
+  @include flex-wrap(wrap);
 }
 
 .match__date {
-  width: 50px;
+  width: 30px;
 }
 
 .match__time {
-  width: 50px;
+  width: 30px;
 }
 
 .match__stadium {
-  width: 150px;
-}
-
-.match__city {
   width: 100px;
 }
 
+.match__city {
+  width: 60px;
+}
+
 .match__teams {
+  width: 130px;
+  text-align: right;
+}
+
+.match__results {
+  width: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: inherit;
+}
+
+.goals {
+  width: 10px;
+  border: none;
+  outline: none;
   text-align: center;
 }

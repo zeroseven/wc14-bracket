@@ -10,7 +10,7 @@
 		Views: {},
 		Routers: {},
 		init: function() {
-			stadiums = new wcb.Collections.Stadium();
+			wcb.stadiums = stadiums = new wcb.Collections.Stadium();
 			stadiums.reset([
 				{
 					id: '01',
@@ -74,7 +74,7 @@
 				}
 			]);
 
-			teams = new wcb.Collections.Team();
+			wcb.teams = teams = new wcb.Collections.Team();
 			teams.reset([
 				{
 					id: 1,
@@ -162,7 +162,8 @@
 				},
 				{
 					id: 22,
-					name: 'Bosnien & Herzegowina'
+					name: 'Bosnien & Herzegowina',
+					short: 'B.-Herzegowina'
 				},
 				{
 					id: 23,
@@ -209,13 +210,18 @@
 			groups = new wcb.Collections.Group();
 
 			['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
-				groups.add({
+				var group = new wcb.Models.Group({
 					id: id
 				}, {
-					teams: teams.slice(index * 4, 4)
+					teams: teams.slice(index * 4, index * 4 + 4)
 				});
+				groups.add(group);
+				var view = new wcb.Views.Group({
+					model: group,
+					el: $('.group--' + id.toLowerCase())
+				});
+				view.render();
 			});
-			console.dir(groups);
 		}
 	};
 })();
