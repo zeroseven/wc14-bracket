@@ -11,7 +11,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		initialize: function(attributes, options) {
 			this.teams = new WorldCupBracket.Collections.Team(options.teams);
-			this.games = WorldCupBracket.Collections.Game.forGroup(this.id, this.teams);
+			this.games = WorldCupBracket.Collections.Match.forGroup(this.id, this.teams);
 		},
 
 		defaults: {},

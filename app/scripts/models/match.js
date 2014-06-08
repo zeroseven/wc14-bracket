@@ -5,7 +5,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 (function () {
     'use strict';
 
-    WorldCupBracket.Models.Game = Backbone.Model.extend({
+    WorldCupBracket.Models.Match = Backbone.Model.extend({
 
         url: '',
 

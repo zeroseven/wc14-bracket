@@ -168,14 +168,14 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 		]
 	}
 
-	WorldCupBracket.Collections.Game = Backbone.Collection.extend({
+	WorldCupBracket.Collections.Match = Backbone.Collection.extend({
 
-		model: WorldCupBracket.Models.Game
+		model: WorldCupBracket.Models.Match
 
 	});
 
-	WorldCupBracket.Collections.Game.forGroup = function(id, teams) {
-		var collection = new WorldCupBracket.Collections.Game();
+	WorldCupBracket.Collections.Match.forGroup = function(id, teams) {
+		var collection = new WorldCupBracket.Collections.Match();
 		groupMatches[id].forEach(function(match, index) {
 			collection.add({
 				id: id + index,
