@@ -1,0 +1,32 @@
+.knockout-matches {
+  margin-top: $hexagon-size / 3 - $hexagon-border;
+  @include flexbox;
+}
+
+.match--knockout {
+  text-align: center;
+}
+
+.group-matches {
+  @include flexbox;
+}
+
+.match__date {
+  width: 50px;
+}
+
+.match__time {
+  width: 50px;
+}
+
+.match__stadium {
+  width: 150px;
+}
+
+.match__city {
+  width: 100px;
+}
+
+.match__teams {
+  text-align: center;
+}

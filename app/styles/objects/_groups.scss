@@ -1,0 +1,17 @@
+.group {
+	@include flex;
+	border-left-width: 3px;
+	border-left-style: solid;
+	padding-left: $base-spacing-unit;
+}
+
+.group__teams {
+	font-weight: normal;
+}
+
+.group--a {
+	border-left-color: $group-a;
+	.group__name {
+		color: $group-a;
+	}
+}

@@ -16,10 +16,11 @@
 @import "sass-flex-mixin/flex";
 @import "tools/mixins";
 
-@import "objects/header";
-@import "objects/hexagon";
-@import "objects/match";
 @import "objects/flex";
+@import "objects/header";
+@import "objects/hexagons";
+@import "objects/matches";
+@import "objects/groups";
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -28,7 +29,8 @@
 body {
   font-family: 'Source Sans Pro', sans-serif;
   color: $text-color;
-  margin: 20px;
+  margin: $base-spacing-unit;
+  font-size: 12px;
 }
 
 h1 {
