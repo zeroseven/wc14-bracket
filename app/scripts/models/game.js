@@ -9,7 +9,10 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
         url: '',
 
-        initialize: function() {
+        initialize: function(attributes, options) {
+          this.home = WorldCupBracket.teams.get(attributes['home']);
+          this.guest = WorldCupBracket.teams.get(attributes['guest']);
+          this.stadium = WorldCupBracket.stadiums.get(attributes['stadium']);
         },
 
         defaults: {

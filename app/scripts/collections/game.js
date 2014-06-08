@@ -5,7 +5,7 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 (function() {
 	'use strict';
 
-	var groupGames = {
+	var groupMatches = {
 		'A': [
 			[
 				[0, 1], '06/12/2014 22:00', '07'
@@ -176,13 +176,13 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 
 	WorldCupBracket.Collections.Game.forGroup = function(id, teams) {
 		var collection = new WorldCupBracket.Collections.Game();
-		groupGames[id].forEach(function(game, index) {
+		groupMatches[id].forEach(function(match, index) {
 			collection.add({
 				id: id + index,
-				home: teams.at(game[0][0]),
-				guest: teams.at(game[0][1]),
-				date: new Date(game[1]),
-				stadium: WorldCupBracket.stadiums.get(game[2])
+				home: teams.at(match[0][0]).id,
+				guest: teams.at(match[0][1]).id,
+				date: new Date(match[1]),
+				stadium: match[2]
 			})
 		});
 		return collection;

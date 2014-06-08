@@ -13,10 +13,6 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		id: '',
 
-		className: function() {
-			return 'group';
-		},
-
 		events: {},
 
 		initialize: function() {
@@ -25,6 +21,13 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		render: function() {
 			this.$el.html(this.template(this));
+			var table = this.$el.find('.group__table');
+			this.model.games.each(function(game) {
+				var view = new WorldCupBracket.Views.GroupMatch({
+					model: game
+				});
+				table.append(view.render().el);
+			});
 		},
 
 		name: function() {

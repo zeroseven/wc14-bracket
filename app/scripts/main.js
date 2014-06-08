@@ -74,7 +74,7 @@
 				}
 			]);
 
-			teams = new wcb.Collections.Team();
+			wcb.teams = teams = new wcb.Collections.Team();
 			teams.reset([
 				{
 					id: 1,
