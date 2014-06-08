@@ -47,9 +47,16 @@
   width: 60px;
 }
 
-.match__teams {
+.match--group .match__teams {
   width: 130px;
   text-align: right;
+}
+
+.match--knockout {
+  .match__teams {
+    font-weight: bold;
+    font-size: 14px;
+  }
 }
 
 .match__results {
@@ -64,4 +71,79 @@
   border: none;
   outline: none;
   text-align: center;
+}
+
+
+// colors
+
+.hexagon--a-b {
+  .match__teams--home {
+    color: $group-a;
+  }
+  .match__teams--guest {
+    color: $group-b;
+  }
+}
+
+.hexagon--b-a {
+  .match__teams--home {
+    color: $group-b;
+  }
+  .match__teams--guest {
+    color: $group-a;
+  }
+}
+
+.hexagon--c-d {
+  .match__teams--home {
+    color: $group-c;
+  }
+  .match__teams--guest {
+    color: $group-d;
+  }
+}
+
+.hexagon--d-c {
+  .match__teams--home {
+    color: $group-d;
+  }
+  .match__teams--guest {
+    color: $group-c;
+  }
+}
+
+.hexagon--e-f {
+  .match__teams--home {
+    color: $group-e;
+  }
+  .match__teams--guest {
+    color: $group-f;
+  }
+}
+
+.hexagon--f-e {
+  .match__teams--home {
+    color: $group-f;
+  }
+  .match__teams--guest {
+    color: $group-e;
+  }
+}
+
+.hexagon--g-h {
+  .match__teams--home {
+    color: $group-g;
+  }
+  .match__teams--guest {
+    color: $group-h;
+  }
+}
+
+.hexagon--h-g {
+  .match__teams--home {
+    color: $group-h;
+  }
+  .match__teams--guest {
+    color: $group-g;
+  }
 }

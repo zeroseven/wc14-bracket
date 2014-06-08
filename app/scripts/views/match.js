@@ -12,8 +12,6 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 	var Match = Backbone.View.extend({
 
-		id: '',
-
 		events: {},
 
 		initialize: function() {
@@ -62,7 +60,15 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	});
 
 	WorldCupBracket.Views.KnockoutMatch = Match.extend({
-		className: 'match match--knockout'
+		template: JST['app/scripts/templates/knockout-match.hbs'],
+
+		home: function() {
+			return this.model.get('home');
+		},
+
+		guest: function() {
+			return this.model.get('guest');
+		}
 	});
 
 })();

@@ -28,6 +28,7 @@
 	height: $hexagon-size - $hexagon-border * 2;
 	top: - ($hexagon-size / 3 - $hexagon-border * 2);
 	padding: $half-spacing-unit;
+	z-index: 2;
 }
 
 // color definitions

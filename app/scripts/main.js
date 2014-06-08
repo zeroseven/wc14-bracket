@@ -209,6 +209,8 @@
 
 			groups = new wcb.Collections.Group();
 
+
+			// group stage
 			['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
 				var group = new wcb.Models.Group({
 					id: id
@@ -219,6 +221,19 @@
 				var view = new wcb.Views.Group({
 					model: group,
 					el: $('.group--' + id.toLowerCase())
+				});
+				view.render();
+			});
+
+			// knockout stage
+			// best of 16
+			var bestOf16 = new wcb.Collections.Match.bestOf16();
+
+			bestOf16.each(function(match, index) {
+				var view = new wcb.Views.KnockoutMatch({
+					id: 'AF ' + (index + 1),
+					model: match,
+					el: $('.hexagon--' + match.id + ' .match')
 				});
 				view.render();
 			});
