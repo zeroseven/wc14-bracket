@@ -1,8 +1,9 @@
 .group {
-	@include flex;
+	@include flex(0, 1, 400px);
 	border-left-width: 3px;
 	border-left-style: solid;
 	padding-left: $base-spacing-unit;
+	margin: $half-spacing-unit;
 }
 
 .group__teams {
@@ -13,5 +14,54 @@
 	border-left-color: $group-a;
 	.group__name {
 		color: $group-a;
+	}
+}
+
+.group--b {
+	border-left-color: $group-b;
+	.group__name {
+		color: $group-b;
+	}
+}
+
+.group--c {
+	border-left-color: $group-c;
+	.group__name {
+		color: $group-c;
+	}
+}
+
+.group--d {
+	border-left-color: $group-d;
+	.group__name {
+		color: $group-d;
+	}
+}
+
+.group--e {
+	border-left-color: $group-e;
+	.group__name {
+		color: $group-e;
+	}
+}
+
+.group--f {
+	border-left-color: $group-f;
+	.group__name {
+		color: $group-f;
+	}
+}
+
+.group--g {
+	border-left-color: $group-g;
+	.group__name {
+		color: $group-g;
+	}
+}
+
+.group--h {
+	border-left-color: $group-h;
+	.group__name {
+		color: $group-h;
 	}
 }

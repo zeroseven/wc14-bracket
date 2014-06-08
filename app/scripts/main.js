@@ -209,13 +209,18 @@
 			groups = new wcb.Collections.Group();
 
 			['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
-				groups.add({
+				var group = new wcb.Models.Group({
 					id: id
 				}, {
-					teams: teams.slice(index * 4, 4)
+					teams: teams.slice(index * 4, index * 4 + 4)
 				});
+				groups.add(group);
+				var view = new wcb.Views.Group({
+					model: group,
+					el: $('.group--' + id.toLowerCase())
+				});
+				view.render();
 			});
-			console.dir(groups);
 		}
 	};
 })();

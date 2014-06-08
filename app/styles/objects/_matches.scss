@@ -8,7 +8,9 @@
 }
 
 .group-matches {
+  margin-top: 100px;
   @include flexbox;
+  @include flex-wrap(wrap);
 }
 
 .match__date {
