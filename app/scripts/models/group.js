@@ -5,11 +5,13 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 (function() {
 	'use strict';
 
-	WorldCupBracket.Models.Stadium = Backbone.Model.extend({
+	WorldCupBracket.Models.Group = Backbone.Model.extend({
 
 		url: '',
 
-		initialize: function() {},
+		initialize: function(attributes, options) {
+			this.teams = new WorldCupBracket.Collections.Team(options.teams);
+		},
 
 		defaults: {},
 
