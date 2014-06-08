@@ -10,7 +10,7 @@
 		Views: {},
 		Routers: {},
 		init: function() {
-			stadiums = new wcb.Collections.Stadium();
+			wcb.stadiums = stadiums = new wcb.Collections.Stadium();
 			stadiums.reset([
 				{
 					id: '01',
