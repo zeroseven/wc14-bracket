@@ -8,7 +8,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	var pad = function(value) {
 		value = parseInt(value, 10);
 		return value < 10 ? '0' + value : value;
-	}
+	};
 
 	var Match = Backbone.View.extend({
 

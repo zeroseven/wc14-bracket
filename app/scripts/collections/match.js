@@ -166,7 +166,7 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 				[1, 2], '06/26/2014 22:00', '08'
 			]
 		]
-	}
+	};
 
 	var Match = WorldCupBracket.Collections.Match = Backbone.Collection.extend({
 
@@ -183,7 +183,7 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 				guest: teams.at(match[0][1]).id,
 				date: new Date(match[1]),
 				stadium: match[2]
-			})
+			});
 		});
 		return collection;
 	};
@@ -200,7 +200,7 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 				id: teams[1] + '-' + teams[0],
 				home: teams[1].toUpperCase() + '1',
 				guest: teams[0].toUpperCase() + '2'
-			})
+			});
 		});
 		return collection;
 	};
