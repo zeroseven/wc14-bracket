@@ -9,19 +9,15 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		url: '',
 
-		initialize: function(attributes/*, options*/) {
-			this.home = WorldCupBracket.teams.get(attributes.home);
-			this.guest = WorldCupBracket.teams.get(attributes.guest);
+		initialize: function(attributes, options) {
+			this.home = options.home;
+			this.guest = options.guest;
+			//TODO: this.stadium = options.stadium;
 			this.stadium = WorldCupBracket.stadiums.get(attributes.stadium);
 
 			this.on('change:result', this.persistResult, this);
 
-			try {
-				var results = JSON.parse(localStorage.results);
-				if(results[this.id]) {
-					this.set('result', results[this.id], {silent: true});
-				}
-			} catch (e) {}
+			this.loadResults();
 		},
 
 		defaults: {},
@@ -58,6 +54,15 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			var results = JSON.parse(localStorage.results);
 			results[this.id] = this.get('result');
 			localStorage.results = JSON.stringify(results);
+		},
+
+		loadResults: function() {
+			try {
+				var results = JSON.parse(localStorage.results);
+				if(results[this.id]) {
+					this.set('result', results[this.id], {silent: true});
+				}
+			} catch (e) {}
 		},
 
 		finished: function() {

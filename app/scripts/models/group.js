@@ -7,11 +7,19 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 	WorldCupBracket.Models.Group = Backbone.Model.extend({
 
-		url: '',
-
 		initialize: function(attributes, options) {
-			this.teams = new WorldCupBracket.Collections.Team(options.teams);
+			this.teams = new WorldCupBracket.Collections.Team(options.teams, {
+				comparator: function(a, b) {
+					return b.points() - a.points();
+				}
+			});
 			this.matches = WorldCupBracket.Collections.Match.forGroup(this.id, this.teams);
+
+			this.matches.on(
+				'change:result',
+				_.debounce(this.updateTable, 100),
+				this
+			);
 		},
 
 		defaults: {},
@@ -28,28 +36,21 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			}, true);
 		},
 
-		table: function() {
-			var table = {};
+		updateTable: function() {
+			console.log('updateTable');
 			this.teams.each(function(team) {
-				table[team.id] = 0;
+				team.points(0);
 			});
 
 			this.matches.each(function(match) {
-				var points = match.points();
-				table[match.home.id] += points[0];
-				table[match.guest.id] += points[1];
+				if(match.finished()) {
+					var points = match.points();
+					match.home.addPoints(points[0]);
+					match.guest.addPoints(points[1]);
+				}
 			});
 
-			table = _.pairs(table);
-			table = _.sortBy(table, function(match) {
-				return - match[1];
-			});
-
-			table.forEach(function(entry) {
-				entry[0] = this.teams.get(entry[0]);
-			}.bind(this));
-
-			return table;
+			this.teams.sort();
 		}
 	});
 

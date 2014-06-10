@@ -41,6 +41,10 @@ describe('WorldCupBracket.Models.Group', function () {
 		expect(group.teams.length).toBe(4);
 	});
 
+	it('adds a comparator function to teams', function () {
+	  expect(group.teams.comparator).toBeDefined();
+	});
+
 	it('creates matches', function () {
 	  expect(group.matches).toEqual(jasmine.any(WorldCupBracket.Collections.Match));
 		expect(group.matches.length).toBe(6);
@@ -61,7 +65,7 @@ describe('WorldCupBracket.Models.Group', function () {
 	});
 
 	describe('table', function () {
-		it('computes group tables', function () {
+		beforeEach(function (done) {
 			var results = [
 				[3, 1], // Deutschland - Portugal
 				[1, 2], // Ghana - USA
@@ -74,12 +78,16 @@ describe('WorldCupBracket.Models.Group', function () {
 			results.forEach(function(result, index) {
 				group.matches.at(index).result(result);
 			});
-
-			expect(group.table()).toEqual([
-				[teams.at(0), 9], // Germany
-				[teams.at(1), 6], // Portugal
-				[teams.at(3), 3], // USA
-				[teams.at(2), 0]  // Ghana
+			setTimeout(done, 150);
+		});
+		it('computes group tables', function (/*done*/) {
+			expect(group.teams.map(function(team) {
+				return [ team.id, team.points() ];
+			})).toEqual([
+				[25, 9], // Germany
+				[26, 6], // Portugal
+				[28, 3], // USA
+				[27, 0]  // Ghana
 			]);
 		});
 	});

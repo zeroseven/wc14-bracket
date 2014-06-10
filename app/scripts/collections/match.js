@@ -179,10 +179,12 @@ WorldCupBracket.Collections = WorldCupBracket.Collections || {};
 		groupMatches[id].forEach(function(match, index) {
 			collection.add({
 				id: id + index,
-				home: teams.at(match[0][0]).id,
-				guest: teams.at(match[0][1]).id,
 				date: new Date(match[1]),
 				stadium: match[2]
+			},
+			{
+				home: teams.at(match[0][0]),
+				guest: teams.at(match[0][1])
 			});
 		});
 		return collection;

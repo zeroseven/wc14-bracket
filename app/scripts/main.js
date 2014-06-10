@@ -4,11 +4,29 @@
 	var stadiums = null,
 	    teams = null,
 	    groups = null;
+
+	var accessor = function(name) {
+		return function(value) {
+			// console.log('accessor', this, name, value);
+			if(arguments.length === 0) {
+				// console.log('get', this.get(name));
+				return this.get(name);
+			} else {
+				// console.log('set', value);
+				this.set(name, value);
+			}
+		};
+	};
+
 	var wcb = window.WorldCupBracket = {
 		Models: {},
 		Collections: {},
 		Views: {},
 		Routers: {},
+		Mixins: {
+			accessor: accessor
+		},
+
 		init: function() {
 			wcb.stadiums = stadiums = new wcb.Collections.Stadium();
 			stadiums.reset([
@@ -74,7 +92,7 @@
 				}
 			]);
 
-			wcb.teams = teams = new wcb.Collections.Team();
+			teams = new wcb.Collections.Team();
 			teams.reset([
 				{
 					id: 1,
