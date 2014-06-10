@@ -62,10 +62,25 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		finished: function() {
 			var result = this.get('result');
-			return _.isArray(result)
-			    && result.length === 2
-			    && _.isNumber(result[0])
-			    && _.isNumber(result[1]);
+			return _.isArray(result) &&
+			       result.length === 2 &&
+			       _.isNumber(result[0]) &&
+			       _.isNumber(result[1]);
+		},
+
+		points: function() {
+			if(this.finished()) {
+				var result = this.result(),
+				    home = result[0],
+				    guest = result[1];
+				if(home > guest) {
+					return [3, 0];
+				} else if(home < guest) {
+					return [0, 3];
+				} else {
+					return [1, 1];
+				}
+			}
 		}
 	});
 

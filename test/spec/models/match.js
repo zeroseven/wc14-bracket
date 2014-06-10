@@ -5,19 +5,21 @@ describe('WorldCupBracket.Models.Match', function() {
 	var Match = WorldCupBracket.Models.Match;
 	var teams = new WorldCupBracket.Collections.Team();
 	var match = null;
-	teams.reset([
-		{
-			id: 25,
-			name: 'Deutschland'
-		},
-		{
-			id: 26,
-			name: 'Portugal'
-		}
-	]);
 
 	beforeEach(function() {
 		delete localStorage.results;
+
+		teams.reset([
+			{
+				id: 25,
+				name: 'Deutschland'
+			},
+			{
+				id: 26,
+				name: 'Portugal'
+			}
+		]);
+
 		match = new Match({
 			id: 'G0',
 			home: teams.at(0).id,
@@ -65,6 +67,25 @@ describe('WorldCupBracket.Models.Match', function() {
 		it('doesn\'t report partial results as finished', function() {
 			match.result([6, undefined]);
 			expect(match.finished()).not.toBe(true);
+		});
+	});
+
+	describe('points', function () {
+		it('doesnt assign points when match is unfinished', function () {
+			expect(match.points()).not.toBeDefined();
+		});
+		
+		it('assigns three points to the winner', function () {
+			match.result(1, 0);
+			expect(match.points()).toEqual([3, 0]);
+
+			match.result(1, 2);
+			expect(match.points()).toEqual([0, 3]);
+		});
+
+		it('assigns on point each for a draw', function () {
+			match.result(1, 1);
+			expect(match.points()).toEqual([1, 1]);
 		});
 	});
 });

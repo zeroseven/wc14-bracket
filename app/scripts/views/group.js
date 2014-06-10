@@ -22,9 +22,9 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		render: function() {
 			this.$el.html(this.template(this));
 			var table = this.$el.find('.group__table');
-			this.model.games.each(function(game) {
+			this.model.matches.each(function(match) {
 				var view = new WorldCupBracket.Views.GroupMatch({
-					model: game
+					model: match
 				});
 				table.append(view.render().el);
 			});

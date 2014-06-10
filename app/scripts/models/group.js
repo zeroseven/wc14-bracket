@@ -11,7 +11,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		initialize: function(attributes, options) {
 			this.teams = new WorldCupBracket.Collections.Team(options.teams);
-			this.games = WorldCupBracket.Collections.Match.forGroup(this.id, this.teams);
+			this.matches = WorldCupBracket.Collections.Match.forGroup(this.id, this.teams);
 		},
 
 		defaults: {},
@@ -21,6 +21,12 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 		parse: function(response/*, options*/) {
 			return response;
 		},
+
+		finished: function() {
+			return this.matches.reduce(function(finished, match) {
+				return finished && match.finished();
+			}, true);
+		}
 	});
 
 })();
