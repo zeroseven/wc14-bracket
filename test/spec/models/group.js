@@ -52,12 +52,35 @@ describe('WorldCupBracket.Models.Group', function () {
 		});
 
 		it('is finished when all matches are finished', function () {
-			group.matches.each(function(match, index) {
-				console.log(match, index);
+			group.matches.each(function(match) {
 				expect(group.finished()).not.toBe(true);
 				match.result(1, 0);
 			});
 			expect(group.finished()).toBe(true);
+		});
+	});
+
+	describe('table', function () {
+		it('computes group tables', function () {
+			var results = [
+				[3, 1], // Deutschland - Portugal
+				[1, 2], // Ghana - USA
+				[2, 0], // Deutschland - Ghana
+				[0, 3], // USA - Portugal
+				[1, 4], // USA - Deutschland
+				[2, 1]  // Portugal - Ghana
+			];
+
+			results.forEach(function(result, index) {
+				group.matches.at(index).result(result);
+			});
+
+			expect(group.table()).toEqual([
+				[teams.at(0), 9], // Germany
+				[teams.at(1), 6], // Portugal
+				[teams.at(3), 3], // USA
+				[teams.at(2), 0]  // Ghana
+			]);
 		});
 	});
 

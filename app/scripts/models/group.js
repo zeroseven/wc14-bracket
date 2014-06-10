@@ -26,6 +26,30 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			return this.matches.reduce(function(finished, match) {
 				return finished && match.finished();
 			}, true);
+		},
+
+		table: function() {
+			var table = {};
+			this.teams.each(function(team) {
+				table[team.id] = 0;
+			});
+
+			this.matches.each(function(match) {
+				var points = match.points();
+				table[match.home.id] += points[0];
+				table[match.guest.id] += points[1];
+			});
+
+			table = _.pairs(table);
+			table = _.sortBy(table, function(match) {
+				return - match[1];
+			});
+
+			table.forEach(function(entry) {
+				entry[0] = this.teams.get(entry[0]);
+			}.bind(this));
+
+			return table;
 		}
 	});
 
