@@ -10,6 +10,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 		url: '',
 
 		initialize: function(attributes, options) {
+			options = options || {};
 			this.home = options.home;
 			this.guest = options.guest;
 			//TODO: this.stadium = options.stadium;

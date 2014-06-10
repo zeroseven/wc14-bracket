@@ -21,9 +21,10 @@ describe('WorldCupBracket.Models.Match', function() {
 		]);
 
 		match = new Match({
-			id: 'G0',
-			home: teams.at(0).id,
-			guest: teams.at(1).id
+			id: 'G0'
+		},{
+			home: teams.at(0),
+			guest: teams.at(1)
 		});
 	});
 
@@ -71,10 +72,10 @@ describe('WorldCupBracket.Models.Match', function() {
 	});
 
 	describe('points', function () {
-		it('doesnt assign points when match is unfinished', function () {
+		it('doesn\'t assign points when match is unfinished', function () {
 			expect(match.points()).not.toBeDefined();
 		});
-		
+
 		it('assigns three points to the winner', function () {
 			match.result(1, 0);
 			expect(match.points()).toEqual([3, 0]);
