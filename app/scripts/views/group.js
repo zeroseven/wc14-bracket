@@ -32,6 +32,8 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 				});
 				table.append(view.render().el);
 			});
+			this.model.updateTable();
+			return this;
 		},
 
 		name: function() {

@@ -63,7 +63,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			try {
 				var results = JSON.parse(localStorage.results);
 				if(results[this.id]) {
-					this.set('result', results[this.id], {skipPersist: true});
+					this.set('result', results[this.id], { skipPersist: true });
 				}
 			} catch (e) {}
 		},
