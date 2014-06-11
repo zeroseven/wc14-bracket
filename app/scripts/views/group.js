@@ -17,6 +17,10 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
+
+			[this.idFirst(), this.idSecond()].forEach(function(eventId) {
+				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setWinners);
+			}.bind(this));
 		},
 
 		render: function() {
@@ -46,6 +50,10 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		idSecond: function() {
 			return this.model.id + '2';
+		},
+
+		setWinners: function(id, team) {
+			this.$el.find('#' + id).val(team.name());
 		}
 
 	});

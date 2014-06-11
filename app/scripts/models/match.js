@@ -50,18 +50,20 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			}
 		},
 
-		persistResult: function() {
-			localStorage.results = localStorage.results || '{}';
-			var results = JSON.parse(localStorage.results);
-			results[this.id] = this.get('result');
-			localStorage.results = JSON.stringify(results);
+		persistResult: function(model, value, options) {
+			if(options.skipPersist !== true) {
+				localStorage.results = localStorage.results || '{}';
+				var results = JSON.parse(localStorage.results);
+				results[this.id] = this.get('result');
+				localStorage.results = JSON.stringify(results);
+			}
 		},
 
 		loadResults: function() {
 			try {
 				var results = JSON.parse(localStorage.results);
 				if(results[this.id]) {
-					this.set('result', results[this.id], {silent: true});
+					this.set('result', results[this.id], {skipPersist: true});
 				}
 			} catch (e) {}
 		},

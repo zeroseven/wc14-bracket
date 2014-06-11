@@ -18,6 +18,8 @@
 		};
 	};
 
+	var matchEvents = _.extend({}, Backbone.Events);
+
 	var wcb = window.WorldCupBracket = {
 		Models: {},
 		Collections: {},
@@ -26,6 +28,7 @@
 		Mixins: {
 			accessor: accessor
 		},
+		matchEvents: matchEvents,
 
 		init: function() {
 			wcb.stadiums = stadiums = new wcb.Collections.Stadium();

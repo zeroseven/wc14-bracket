@@ -65,7 +65,10 @@ describe('WorldCupBracket.Models.Group', function () {
 	});
 
 	describe('table', function () {
+		var spy;
 		beforeEach(function (done) {
+			spy = jasmine.createSpy('Team A1');
+			WorldCupBracket.matchEvents.on('G1', spy);
 			var results = [
 				[3, 1], // Deutschland - Portugal
 				[1, 2], // Ghana - USA
@@ -80,7 +83,8 @@ describe('WorldCupBracket.Models.Group', function () {
 			});
 			setTimeout(done, 150);
 		});
-		it('computes group tables', function (/*done*/) {
+
+		it('computes group tables', function () {
 			expect(group.teams.map(function(team) {
 				return [ team.id, team.points() ];
 			})).toEqual([
@@ -89,6 +93,10 @@ describe('WorldCupBracket.Models.Group', function () {
 				[28, 3], // USA
 				[27, 0]  // Ghana
 			]);
+		});
+
+		it('triggers finished event', function() {
+			expect(spy).toHaveBeenCalledWith('G1', group.teams.at(0));
 		});
 	});
 

@@ -12,10 +12,12 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 	var Match = Backbone.View.extend({
 
-		events: {},
+		events: {
+			'change .goals': 'setResult'
+		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
+			// this.listenTo(this.model, 'change', this.render);
 		},
 
 		render: function() {
@@ -47,6 +49,22 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		guest: function() {
 			return this.model.guest.short();
+		},
+
+		homeGoals: function() {
+			return (this.model.result() || ['', ''])[0];
+		},
+
+		guestGoals: function() {
+			return (this.model.result() || ['', ''])[1];
+		},
+
+		setResult: function() {
+			var goals = this.$el.find('.goals');
+			var result = goals.map(function() {
+				return Number.parseInt($(this).val(), 10);
+			});
+			this.model.result(result.get());
 		}
 
 	});

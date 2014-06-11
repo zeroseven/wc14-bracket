@@ -37,7 +37,6 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 		},
 
 		updateTable: function() {
-			console.log('updateTable');
 			this.teams.each(function(team) {
 				team.points(0);
 			});
@@ -51,6 +50,12 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			});
 
 			this.teams.sort();
+
+			if(this.finished()) {
+				console.log('finished');
+				WorldCupBracket.matchEvents.trigger(this.id + '1', this.id + '1', this.teams.at(0));
+				WorldCupBracket.matchEvents.trigger(this.id + '2', this.id + '2', this.teams.at(1));
+			}
 		}
 	});
 

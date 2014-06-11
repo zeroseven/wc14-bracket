@@ -26,6 +26,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 		},
 
 		points: accessor('points'),
+		name: accessor('name'),
 
 		addPoints: function(points) {
 			this.points(this.points() + points);
