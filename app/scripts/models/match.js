@@ -13,8 +13,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			options = options || {};
 			this.home = options.home;
 			this.guest = options.guest;
-			//TODO: this.stadium = options.stadium;
-			this.stadium = WorldCupBracket.stadiums.get(attributes.stadium);
+			this.stadium = options.stadium;
 
 			this.on('change:result', this.persistResult, this);
 

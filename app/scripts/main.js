@@ -31,7 +31,7 @@
 		matchEvents: matchEvents,
 
 		init: function(data) {
-			wcb.stadiums = stadiums = new wcb.Collections.Stadium();
+			stadiums = new wcb.Collections.Stadium();
 			stadiums.reset(data.stadiums);
 
 			teams = new wcb.Collections.Team();
@@ -44,12 +44,12 @@
 				data.groupMatches[id].forEach(function(match, index) {
 					collection.add({
 						id: id + index,
-						date: new Date(match[1]),
-						stadium: match[2]
+						date: new Date(match[1])
 					},
 					{
 						home: teams[match[0][0]],
-						guest: teams[match[0][1]]
+						guest: teams[match[0][1]],
+						stadium: stadiums.get(match[2])
 					});
 				});
 				return collection;
