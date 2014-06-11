@@ -80,12 +80,24 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	WorldCupBracket.Views.KnockoutMatch = Match.extend({
 		template: JST['app/scripts/templates/knockout-match.hbs'],
 
+		initialize: function() {
+			Match.prototype.initialize.apply(this, arguments);
+		},
+
 		home: function() {
 			return this.model.get('home');
 		},
 
 		guest: function() {
 			return this.model.get('guest');
+		},
+
+		idHome: function() {
+			return this.id + '-home';
+		},
+
+		idGuest: function() {
+			return this.id + '-guest';
 		}
 	});
 
