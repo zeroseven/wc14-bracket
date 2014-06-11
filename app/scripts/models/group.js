@@ -13,7 +13,7 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 					return b.points() - a.points();
 				}
 			});
-			this.matches = WorldCupBracket.Collections.Match.forGroup(this.id, this.teams);
+			this.matches = options.matches;
 
 			this.matches.on(
 				'change:result',

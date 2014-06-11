@@ -39,13 +39,30 @@
 
 			groups = new wcb.Collections.Group();
 
+			var groupMatches = function(id, teams) {
+				var collection = new WorldCupBracket.Collections.Match();
+				data.groupMatches[id].forEach(function(match, index) {
+					collection.add({
+						id: id + index,
+						date: new Date(match[1]),
+						stadium: match[2]
+					},
+					{
+						home: teams[match[0][0]],
+						guest: teams[match[0][1]]
+					});
+				});
+				return collection;
+			};
 
 			// group stage
 			['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
+				var groupTeams = teams.slice(index * 4, index * 4 + 4);
 				var group = new wcb.Models.Group({
 					id: id
 				}, {
-					teams: teams.slice(index * 4, index * 4 + 4)
+					teams: groupTeams,
+					matches: groupMatches(id, groupTeams)
 				});
 				groups.add(group);
 				var view = new wcb.Views.Group({
