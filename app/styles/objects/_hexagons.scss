@@ -42,8 +42,6 @@
 	}
 }
 
-
-
 .hexagon--a-b {
 	@include hexagon($hexagon-size, $group-a, $group-b);
 	@include border-colors($group-a, $group-b);
@@ -87,4 +85,15 @@
 .hexagon--qf {
 	@include hexagon($hexagon-size, $quarter-final);
 	@include border-colors($quarter-final, $quarter-final);
+}
+
+.hexagon--final {
+	@include flex(0, 0, $hexagon-size--final);
+	@include hexagon($hexagon-size--final, $final);
+	@include border-colors($final, $final);
+
+	.hexagon__background {
+		@include hexagon($hexagon-size--final - $hexagon-border * 2, #fcf2d1);
+		z-index: 1;
+	}
 }
