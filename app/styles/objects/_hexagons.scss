@@ -87,13 +87,27 @@
 	@include border-colors($quarter-final, $quarter-final);
 }
 
+.hexagon--sf {
+	@include hexagon($hexagon-size, $semi-final);
+}
+
+.hexagon--consolation {
+	@include hexagon($hexagon-size, $consolation-match);
+}
+
 .hexagon--final {
 	@include flex(0, 0, $hexagon-size--final);
-	@include hexagon($hexagon-size--final, $final);
-	@include border-colors($final, $final);
+	@include hexagon($hexagon-size--final, $final-match);
+	@include border-colors($final-match, $final-match);
 
 	.hexagon__background {
 		@include hexagon($hexagon-size--final - $hexagon-border * 2, #fcf2d1);
 		z-index: 1;
+	}
+
+	.hexagon__content {
+		top: - ($hexagon-size--final / 3 - $hexagon-border * 2);
+		margin: 0 auto;
+		padding-top: $base-spacing-unit;
 	}
 }

@@ -5,6 +5,8 @@
 }
 
 .knockout-matches--bo16-qf {
+  // margin-top: $hexagon-size--final / 3 - $hexagon-border * 3;
+  margin-top: $hexagon-size--final - $hexagon-size--final / sqrt(3);
   @include flexbox;
   @include flex-direction(column);
 }
@@ -24,6 +26,11 @@
   & .hexagon {
     z-index: 1;
   }
+}
+
+.knockout__ui-group--sf {
+  //TODO: why border * 3?!
+  margin-top: $hexagon-size--final / 3 - $hexagon-border * 3;
 }
 
 .knockout__ui-group--one {
