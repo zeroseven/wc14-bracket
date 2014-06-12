@@ -82,6 +82,10 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		initialize: function() {
 			Match.prototype.initialize.apply(this, arguments);
+			[this.model.get('home'), this.model.get('guest')].forEach(function(eventId) {
+				console.log(eventId);
+				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setTeam);
+			}.bind(this));
 		},
 
 		home: function() {
@@ -98,6 +102,27 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		idGuest: function() {
 			return this.id + '-guest';
+		},
+
+		homeName: function() {
+			if(this.model.home !== undefined) {
+				return this.model.home.short();
+			}
+		},
+
+		guestName: function() {
+			if(this.model.guest !== undefined) {
+				return this.model.guest.short();
+			}
+		},
+
+		setTeam: function(id, team) {
+			if(id === this.model.get('home')) {
+				this.model.home = team;
+			} else if(id === this.model.get('guest')) {
+				this.model.guest = team;
+			}
+			this.render();
 		}
 	});
 

@@ -31,6 +31,12 @@
 	margin-bottom: $base-spacing-unit;
 }
 
+.group__border--bottom {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
 .group__rank, .group__border--main {
 	padding-left: $half-spacing-unit;
 }

@@ -109,22 +109,12 @@
 
 			groups = new wcb.Collections.Group();
 
-			createGroupMatches(data.groupMatches);
-
+			// knockout must be defined before groups to catch matchEvents
 			_.pairs(data.knockoutMatches).forEach(function(args) {
 				createKnockoutMatches.apply(this, args);
 			}.bind(this));
 
-			// var bestOf16 = new wcb.Collections.Match.bestOf16();
-
-			// bestOf16.each(function(match, index) {
-			// 	var view = new wcb.Views.KnockoutMatch({
-			// 		id: 'AF ' + (index + 1),
-			// 		model: match,
-			// 		el: $('.hexagon--' + match.id + ' .match')
-			// 	});
-			// 	view.render();
-			// });
+			createGroupMatches(data.groupMatches);
 		}
 	};
 })();
