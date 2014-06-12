@@ -83,7 +83,6 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		initialize: function() {
 			Match.prototype.initialize.apply(this, arguments);
 			[this.model.get('home'), this.model.get('guest')].forEach(function(eventId) {
-				console.log(eventId);
 				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setTeam);
 			}.bind(this));
 		},
