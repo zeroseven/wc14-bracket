@@ -109,6 +109,7 @@ describe('WorldCupBracket.Models.Group', function () {
 	});
 
 	describe('table', function () {
+		// http://de.wikipedia.org/wiki/Fussballweltmeisterschaft_2014#Turnierform
 		var spy;
 		beforeEach(function (done) {
 			spy = jasmine.createSpy('G1');
