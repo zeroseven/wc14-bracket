@@ -1,0 +1,18 @@
+<div class="match__id">{{id}}</div>
+<div class="match__teams">
+	<span class="match__teams--home">{{home}}:</span><span class="match__teams--guest">{{guest}}</span>
+</div>
+<div class="match__team-fields">
+	<input type="text" class="group__border group__border--home group__border--bottom" disabled id="{{idHome}}" value="{{homeName}}">
+	<input type="text" class="group__border group__border--guest group__border--bottom" disabled id="{{idGuest}}" value="{{guestName}}">
+</div>
+<div class="match__results match__results--knockout">
+	<input class="goals goals--home group__border group__border--home group__border--bottom" type="text" value="{{homeGoals}}" />
+	<span class="group__text"> : </span>
+	<input class="goals goals--guest group__border group__border--guest group__border--bottom" type="text" value="{{guestGoals}}" />
+</div>
+<div class="cf">
+	<div class="match__date">{{date}}</div>
+	<div class="match__time">{{time}}</div>
+</div>
+<span class="match__city">{{city}}</span>

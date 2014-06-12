@@ -17,17 +17,23 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		initialize: function() {
 			this.listenTo(this.model, 'change', this.render);
+
+			[this.idFirst(), this.idSecond()].forEach(function(eventId) {
+				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setWinners);
+			}.bind(this));
 		},
 
 		render: function() {
 			this.$el.html(this.template(this));
 			var table = this.$el.find('.group__table');
-			this.model.games.each(function(game) {
+			this.model.matches.each(function(match) {
 				var view = new WorldCupBracket.Views.GroupMatch({
-					model: game
+					model: match
 				});
 				table.append(view.render().el);
 			});
+			this.model.updateTable();
+			return this;
 		},
 
 		name: function() {
@@ -46,6 +52,10 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		idSecond: function() {
 			return this.model.id + '2';
+		},
+
+		setWinners: function(id, team) {
+			this.$el.find('#' + id).val(team.name());
 		}
 
 	});

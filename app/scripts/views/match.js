@@ -8,16 +8,16 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	var pad = function(value) {
 		value = parseInt(value, 10);
 		return value < 10 ? '0' + value : value;
-	}
+	};
 
 	var Match = Backbone.View.extend({
 
-		id: '',
-
-		events: {},
+		events: {
+			'change .goals': 'setResult'
+		},
 
 		initialize: function() {
-			this.listenTo(this.model, 'change', this.render);
+			// this.listenTo(this.model, 'change', this.render);
 		},
 
 		render: function() {
@@ -49,6 +49,22 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		guest: function() {
 			return this.model.guest.short();
+		},
+
+		homeGoals: function() {
+			return (this.model.result() || ['', ''])[0];
+		},
+
+		guestGoals: function() {
+			return (this.model.result() || ['', ''])[1];
+		},
+
+		setResult: function() {
+			var goals = this.$el.find('.goals');
+			var result = goals.map(function() {
+				return Number.parseInt($(this).val(), 10);
+			});
+			this.model.result(result.get());
 		}
 
 	});
@@ -62,7 +78,52 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	});
 
 	WorldCupBracket.Views.KnockoutMatch = Match.extend({
-		className: 'match match--knockout'
+		template: JST['app/scripts/templates/knockout-match.hbs'],
+
+		initialize: function() {
+			Match.prototype.initialize.apply(this, arguments);
+			[this.model.get('home'), this.model.get('guest')].forEach(function(eventId) {
+				console.log(eventId);
+				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setTeam);
+			}.bind(this));
+		},
+
+		home: function() {
+			return this.model.get('home');
+		},
+
+		guest: function() {
+			return this.model.get('guest');
+		},
+
+		idHome: function() {
+			return this.id + '-home';
+		},
+
+		idGuest: function() {
+			return this.id + '-guest';
+		},
+
+		homeName: function() {
+			if(this.model.home !== undefined) {
+				return this.model.home.short();
+			}
+		},
+
+		guestName: function() {
+			if(this.model.guest !== undefined) {
+				return this.model.guest.short();
+			}
+		},
+
+		setTeam: function(id, team) {
+			if(id === this.model.get('home')) {
+				this.model.home = team;
+			} else if(id === this.model.get('guest')) {
+				this.model.guest = team;
+			}
+			this.render();
+		}
 	});
 
 })();

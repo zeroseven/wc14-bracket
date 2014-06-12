@@ -21,7 +21,6 @@
     "jquery": true,
     "globals": {
         "WorldCupBracket": true,
-        "worldcupbracket": true,
         "_": false,
         "Backbone": false,
         "JST": false,

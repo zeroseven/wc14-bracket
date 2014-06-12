@@ -4,228 +4,117 @@
 	var stadiums = null,
 	    teams = null,
 	    groups = null;
+
+	var accessor = function(name) {
+		return function(value) {
+			if(arguments.length === 0) {
+				return this.get(name);
+			} else {
+				this.set(name, value);
+			}
+		};
+	};
+
+	var createGroupMatches = function(data) {
+		var groupMatches = function(id, teams) {
+			var collection = new WorldCupBracket.Collections.Match();
+			data[id].forEach(function(match, index) {
+				collection.add({
+					id: id + index,
+					date: new Date(match[1])
+				},
+				{
+					home: teams[match[0][0]],
+					guest: teams[match[0][1]],
+					stadium: stadiums.get(match[2])
+				});
+			});
+			return collection;
+		};
+
+		// group stage
+		['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
+			var groupTeams = teams.slice(index * 4, index * 4 + 4);
+			var group = new wcb.Models.Group({
+				id: id
+			}, {
+				teams: groupTeams,
+				matches: groupMatches(id, groupTeams)
+			});
+			groups.add(group);
+			var view = new wcb.Views.Group({
+				model: group,
+				el: $('.group--' + id.toLowerCase())
+			});
+			view.render();
+		});
+	};
+
+	var koId = function(round, index) {
+		if(round === 'finals') {
+			return index === 0 ? 'final' : 'consolation';
+		} else {
+			return ({
+				bestOf16: 'bo16',
+				quarterFinals: 'qf',
+				semiFinals: 'sf'
+			})[round] + '-' +(index + 1);
+		}
+	};
+
+	var createKnockoutMatches = function(round, data) {
+		var collection = new wcb.Collections.Match();
+		data.forEach(function(match, index) {
+			var id = koId(round, index);
+			var model = new wcb.Models.Match(
+				{
+					id: id,
+					date: new Date(match[1]),
+					home: match[0][0],
+					guest: match[0][1]
+				},
+				{
+					stadium: stadiums.get(match[2])
+				}
+			);
+			collection.add(model);
+
+			var view = new wcb.Views.KnockoutMatch({
+				id: 'AF ' + (index + 1),
+				model: model,
+				el: $('#' + id)
+			});
+			view.render();
+		});
+	};
+
+	var matchEvents = _.extend({}, Backbone.Events);
+
 	var wcb = window.WorldCupBracket = {
 		Models: {},
 		Collections: {},
 		Views: {},
 		Routers: {},
-		init: function() {
-			wcb.stadiums = stadiums = new wcb.Collections.Stadium();
-			stadiums.reset([
-				{
-					id: '01',
-					name: 'Estádio Castelão',
-					city: 'Fortaleza'
-				},
-				{
-					id: '02',
-					name: 'Estádio das Dunas',
-					city: 'Natal'
-				},
-				{
-					id: '03',
-					name: 'Arena Pernambuco',
-					city: 'Recife'
-				},
-				{
-					id: '04',
-					name: 'Arena Fonte Nova',
-					city: 'Salvador'
-				},
-				{
-					id: '05',
-					name: 'Estádio Mineirão',
-					city: 'Belo Horizonte'
-				},
-				{
-					id: '06',
-					name: 'Estádio do Maracanã',
-					city: 'Rio de Janeiro'
-				},
-				{
-					id: '07',
-					name: 'Arena de São Paulo',
-					city: 'São Paulo'
-				},
-				{
-					id: '08',
-					name: 'Arena da Baixada',
-					city: 'Curitiba'
-				},
-				{
-					id: '09',
-					name: 'Estádio Beira-Rio',
-					city: 'Porto Alegre'
-				},
-				{
-					id: '10',
-					name: 'Estádio Nacional',
-					city: 'Brasilia'
-				},
-				{
-					id: '11',
-					name: 'Arena Pantanal',
-					city: 'Cuiabá'
-				},
-				{
-					id: '12',
-					name: 'Arena da Amazônia',
-					city: 'Manaus'
-				}
-			]);
+		Mixins: {
+			accessor: accessor
+		},
+		matchEvents: matchEvents,
 
-			wcb.teams = teams = new wcb.Collections.Team();
-			teams.reset([
-				{
-					id: 1,
-					name: 'Brasilien'
-				},
-				{
-					id: 2,
-					name: 'Kroatien'
-				},
-				{
-					id: 3,
-					name: 'Mexico'
-				},
-				{
-					id: 4,
-					name: 'Kamerun'
-				},
-				{
-					id: 5,
-					name: 'Spanien'
-				},
-				{
-					id: 6,
-					name: 'Niederlande'
-				},
-				{
-					id: 7,
-					name: 'Chile'
-				},
-				{
-					id: 8,
-					name: 'Australien'
-				},
-				{
-					id: 9,
-					name: 'Kolumbien'
-				},
-				{
-					id: 10,
-					name: 'Griechenland'
-				},
-				{
-					id: 11,
-					name: 'Elfenbeinküste'
-				},
-				{
-					id: 12,
-					name: 'Japan'
-				},
-				{
-					id: 13,
-					name: 'Uruguay'
-				},
-				{
-					id: 14,
-					name: 'Costa Rica'
-				},
-				{
-					id: 15,
-					name: 'England'
-				},
-				{
-					id: 16,
-					name: 'Italien'
-				},
-				{
-					id: 17,
-					name: 'Schweiz'
-				},
-				{
-					id: 18,
-					name: 'Ecuador'
-				},
-				{
-					id: 19,
-					name: 'Frankreich'
-				},
-				{
-					id: 20,
-					name: 'Honduras'
-				},
-				{
-					id: 21,
-					name: 'Argentinien'
-				},
-				{
-					id: 22,
-					name: 'Bosnien & Herzegowina',
-					short: 'B.-Herzegowina'
-				},
-				{
-					id: 23,
-					name: 'Iran'
-				},
-				{
-					id: 24,
-					name: 'Nigeria'
-				},
-				{
-					id: 25,
-					name: 'Deutschland'
-				},
-				{
-					id: 26,
-					name: 'Portugal'
-				},
-				{
-					id: 27,
-					name: 'Ghana'
-				},
-				{
-					id: 28,
-					name: 'USA'
-				},
-				{
-					id: 29,
-					name: 'Belgien'
-				},
-				{
-					id: 30,
-					name: 'Algerien'
-				},
-				{
-					id: 31,
-					name: 'Russland'
-				},
-				{
-					id: 32,
-					name: 'Südkorea'
-				}
-			]);
+		init: function(data) {
+			stadiums = new wcb.Collections.Stadium();
+			stadiums.reset(data.stadiums);
+
+			teams = new wcb.Collections.Team();
+			teams.reset(data.teams);
 
 			groups = new wcb.Collections.Group();
 
-			['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].forEach(function(id, index) {
-				var group = new wcb.Models.Group({
-					id: id
-				}, {
-					teams: teams.slice(index * 4, index * 4 + 4)
-				});
-				groups.add(group);
-				var view = new wcb.Views.Group({
-					model: group,
-					el: $('.group--' + id.toLowerCase())
-				});
-				view.render();
-			});
+			// knockout must be defined before groups to catch matchEvents
+			_.pairs(data.knockoutMatches).forEach(function(args) {
+				createKnockoutMatches.apply(this, args);
+			}.bind(this));
+
+			createGroupMatches(data.groupMatches);
 		}
 	};
 })();
-
-$(document).ready(function() {
-	WorldCupBracket.init();
-});

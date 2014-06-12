@@ -8,6 +8,8 @@
 		background-color: $color-left;
 	}
 
+	z-index: -1;
+
 	&:before, &:after {
 		position: absolute;
 		top: 0;
