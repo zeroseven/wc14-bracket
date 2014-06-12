@@ -263,7 +263,13 @@ module.exports = function(grunt) {
 					]
 				}
 			}
-		}
+		},
+		'gh-pages': {
+			options: {
+				base: 'dist'
+			},
+			src: ['**']
+	  }
 	});
 
 	grunt.registerTask('createDefaultTemplate', function() {
