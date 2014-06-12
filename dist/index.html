@@ -1,0 +1,522 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<!-- meta http-equiv="X-UA-Compatible" content="IE=edge" -->
+	<title>WorldCupBracket</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="stylesheet" href="styles/dd570b47.main.css">
+	<script src="scripts/vendor/a52a8685.modernizr.js"></script>
+</head>
+
+<body>
+	<a href="https://github.com/zeroseven/wc14-bracket"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+	<!--[if lt IE 10]>
+		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+
+
+	<h1 class="header">
+		<span class="header__title">Fußballweltmeisterschaft</span>
+		<br>
+		<span class="header__year">2014</span>
+	</h1>
+
+	<div class="knockout-matches">
+		<div class="knockout__ui-group knockout__ui-group--three">
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon"></div>
+			<div class="hexagon hexagon--h-g hexagon--full">
+				<div class="hexagon__background">
+					<div id="bo16-8" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--spacer"></div>
+			<div class="hexagon hexagon--qf hexagon--full">
+				<div class="hexagon__background">
+					<div id="qf-3" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="knockout__ui-group knockout__ui-group--two">
+			<div class="hexagon hexagon--push">
+			</div>
+			<div class="hexagon hexagon--e-f">
+				<div class="hexagon__background">
+					<div id="bo16-3" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--f-e">
+				<div class="hexagon__background">
+					<div id="bo16-7" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--g-h">
+				<div class="hexagon__background">
+					<div id="bo16-4" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--qf">
+				<div class="hexagon__background">
+					<div id="qf-1" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--qf hexagon--full">
+				<div class="hexagon__background">
+					<div id="qf-4" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="knockout__ui-group knockout__ui-group--one">
+			<div class="hexagon hexagon--a-b">
+				<div class="hexagon__background">
+					<div id="bo16-1" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--b-a">
+				<div class="hexagon__background">
+					<div id="bo16-5" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--c-d">
+				<div class="hexagon__background">
+					<div id="bo16-2" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--d-c hexagon--full">
+				<div class="hexagon__background">
+					<div id="bo16-6" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+			<div class="hexagon hexagon--spacer">
+			</div>
+			<div class="hexagon hexagon--qf hexagon--full">
+				<div class="hexagon__background">
+					<div id="qf-2" class="hexagon__content match match--knockout">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="group-matches">
+		<div class="group group--a"></div>
+		<div class="group group--b"></div>
+		<div class="group group--c"></div>
+		<div class="group group--d"></div>
+		<div class="group group--e"></div>
+		<div class="group group--f"></div>
+		<div class="group group--g"></div>
+		<div class="group group--h"></div>
+	</div>
+
+
+
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+		function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+		e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+		e.src='//www.google-analytics.com/analytics.js';
+		r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+		ga('create','UA-XXXXX-X');ga('send','pageview');
+	</script>
+
+	<script src="scripts/b5675c1c.vendor.js"></script>
+
+	<script src="scripts/d41d8cd9.plugins.js"></script>
+
+	<script src="scripts/70662f98.main.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			'use strict';
+			WorldCupBracket.init({
+				stadiums: [{
+					id: '01',
+					name: 'Estádio Castelão',
+					city: 'Fortaleza'
+				}, {
+					id: '02',
+					name: 'Estádio das Dunas',
+					city: 'Natal'
+				}, {
+					id: '03',
+					name: 'Arena Pernambuco',
+					city: 'Recife'
+				}, {
+					id: '04',
+					name: 'Arena Fonte Nova',
+					city: 'Salvador'
+				}, {
+					id: '05',
+					name: 'Estádio Mineirão',
+					city: 'Belo Horizonte'
+				}, {
+					id: '06',
+					name: 'Estádio do Maracanã',
+					city: 'Rio de Janeiro'
+				}, {
+					id: '07',
+					name: 'Arena de São Paulo',
+					city: 'São Paulo'
+				}, {
+					id: '08',
+					name: 'Arena da Baixada',
+					city: 'Curitiba'
+				}, {
+					id: '09',
+					name: 'Estádio Beira-Rio',
+					city: 'Porto Alegre'
+				}, {
+					id: '10',
+					name: 'Estádio Nacional',
+					city: 'Brasilia'
+				}, {
+					id: '11',
+					name: 'Arena Pantanal',
+					city: 'Cuiabá'
+				}, {
+					id: '12',
+					name: 'Arena da Amazônia',
+					city: 'Manaus'
+				}],
+				teams: [{
+					id: 1,
+					name: 'Brasilien'
+				}, {
+					id: 2,
+					name: 'Kroatien'
+				}, {
+					id: 3,
+					name: 'Mexico'
+				}, {
+					id: 4,
+					name: 'Kamerun'
+				}, {
+					id: 5,
+					name: 'Spanien'
+				}, {
+					id: 6,
+					name: 'Niederlande'
+				}, {
+					id: 7,
+					name: 'Chile'
+				}, {
+					id: 8,
+					name: 'Australien'
+				}, {
+					id: 9,
+					name: 'Kolumbien'
+				}, {
+					id: 10,
+					name: 'Griechenland'
+				}, {
+					id: 11,
+					name: 'Elfenbeinküste'
+				}, {
+					id: 12,
+					name: 'Japan'
+				}, {
+					id: 13,
+					name: 'Uruguay'
+				}, {
+					id: 14,
+					name: 'Costa Rica'
+				}, {
+					id: 15,
+					name: 'England'
+				}, {
+					id: 16,
+					name: 'Italien'
+				}, {
+					id: 17,
+					name: 'Schweiz'
+				}, {
+					id: 18,
+					name: 'Ecuador'
+				}, {
+					id: 19,
+					name: 'Frankreich'
+				}, {
+					id: 20,
+					name: 'Honduras'
+				}, {
+					id: 21,
+					name: 'Argentinien'
+				}, {
+					id: 22,
+					name: 'Bosnien & Herzegowina',
+					short: 'B.-Herzegowina'
+				}, {
+					id: 23,
+					name: 'Iran'
+				}, {
+					id: 24,
+					name: 'Nigeria'
+				}, {
+					id: 25,
+					name: 'Deutschland'
+				}, {
+					id: 26,
+					name: 'Portugal'
+				}, {
+					id: 27,
+					name: 'Ghana'
+				}, {
+					id: 28,
+					name: 'USA'
+				}, {
+					id: 29,
+					name: 'Belgien'
+				}, {
+					id: 30,
+					name: 'Algerien'
+				}, {
+					id: 31,
+					name: 'Russland'
+				}, {
+					id: 32,
+					name: 'Südkorea'
+				}],
+				groupMatches: {
+					'A': [
+						[
+							[0, 1], '06/12/2014 22:00', '07'
+						],
+						[
+							[2, 3], '06/13/2014 18:00', '02'
+						],
+						[
+							[0, 2], '06/17/2014 21:00', '01'
+						],
+						[
+							[3, 1], '06/18/2014 18:00', '12'
+						],
+						[
+							[3, 0], '06/23/2014 22:00', '10'
+						],
+						[
+							[1, 2], '06/23/2014 22:00', '03'
+						]
+					],
+					'B': [
+						[
+							[0, 1], '06/13/2014 21:00', '04'
+						],
+						[
+							[2, 3], '06/14/2014 00:00', '11'
+						],
+						[
+							[3, 1], '06/18/2014 18:00', '09'
+						],
+						[
+							[0, 2], '06/18/2014 21:00', '06'
+						],
+						[
+							[3, 0], '06/23/2014 18:00', '08'
+						],
+						[
+							[1, 2], '06/23/2014 18:00', '07'
+						]
+					],
+					'C': [
+						[
+							[0, 1], '06/14/2014 18:00', '05'
+						],
+						[
+							[2, 3], '06/15/2014 03:00', '03'
+						],
+						[
+							[0, 2], '06/19/2014 18:00', '10'
+						],
+						[
+							[3, 1], '06/20/2014 00:00', '02'
+						],
+						[
+							[3, 0], '06/24/2014 22:00', '11'
+						],
+						[
+							[1, 2], '06/24/2014 22:00', '01'
+						]
+					],
+					'D': [
+						[
+							[0, 1], '06/14/2014 21:00', '01'
+						],
+						[
+							[2, 3], '06/15/2014 00:00', '12'
+						],
+						[
+							[0, 2], '06/19/2014 21:00', '07'
+						],
+						[
+							[3, 1], '06/20/2014 18:00', '03'
+						],
+						[
+							[3, 0], '06/24/2014 18:00', '02'
+						],
+						[
+							[1, 2], '06/24/2014 18:00', '05'
+						]
+					],
+					'E': [
+						[
+							[0, 1], '06/15/2014 18:00', '10'
+						],
+						[
+							[2, 3], '06/15/2014 21:00', '09'
+						],
+						[
+							[0, 2], '06/20/2014 21:00', '04'
+						],
+						[
+							[3, 1], '06/21/2014 00:00', '08'
+						],
+						[
+							[3, 0], '06/25/2014 22:00', '12'
+						],
+						[
+							[1, 2], '06/25/2014 22:00', '06'
+						]
+					],
+					'F': [
+						[
+							[0, 1], '06/16/2014 00:00', '06'
+						],
+						[
+							[2, 3], '06/16/2014 21:00', '08'
+						],
+						[
+							[0, 2], '06/21/2014 18:00', '05'
+						],
+						[
+							[3, 1], '06/22/2014 00:00', '11'
+						],
+						[
+							[3, 0], '06/25/2014 18:00', '09'
+						],
+						[
+							[1, 2], '06/25/2014 18:00', '04'
+						]
+					],
+					'G': [
+						[
+							[0, 1], '06/16/2014 18:00', '04'
+						],
+						[
+							[2, 3], '06/17/2014 00:00', '02'
+						],
+						[
+							[0, 2], '06/21/2014 21:00', '01'
+						],
+						[
+							[3, 1], '06/23/2014 00:00', '12'
+						],
+						[
+							[3, 0], '06/26/2014 18:00', '03'
+						],
+						[
+							[1, 2], '06/26/2014 18:00', '10'
+						]
+					],
+					'H': [
+						[
+							[0, 1], '06/17/2014 18:00', '05'
+						],
+						[
+							[2, 3], '06/18/2014 00:00', '11'
+						],
+						[
+							[0, 2], '06/22/2014 18:00', '06'
+						],
+						[
+							[3, 1], '06/22/2014 21:00', '09'
+						],
+						[
+							[3, 0], '06/26/2014 22:00', '07'
+						],
+						[
+							[1, 2], '06/26/2014 22:00', '08'
+						]
+					]
+				},
+				knockoutMatches: {
+					bestOf16: [
+						[
+							['A1', 'B2'], '06/28/2014 18:00', '05'
+						],
+						[
+							['C1', 'D2'], '06/28/2014 22:00', '06'
+						],
+						[
+							['E1', 'F2'], '06/30/2014 18:00', '10'
+						],
+						[
+							['G1', 'H2'], '06/30/2014 22:00', '09'
+						],
+						[
+							['B1', 'A2'], '06/29/2014 18:00', '01'
+						],
+						[
+							['D1', 'C2'], '06/29/2014 22:00', '03'
+						],
+						[
+							['F1', 'E2'], '07/01/2014 18:00', '07'
+						],
+						[
+							['H1', 'G2'], '07/01/2014 22:00', '04'
+						]
+					],
+					quarterFinals: [
+						[
+							['AF 1', 'AF 2'], '07/04/2014 22:00', '01'
+						],
+						[
+							['AF 5', 'AF 6'], '07/04/2014 18:00', '06'
+						],
+						[
+							['AF 3', 'AF 4'], '07/05/2014 22:00', '04'
+						],
+						[
+							['AF 7', 'AF 8'], '07/05/2014 18:00', '10'
+						]
+					],
+					semiFinals: [
+						[
+							['QF 1', 'QF 2'], '07/08/2014 22:00', '05'
+						],
+						[
+							['QF 3', 'QF 4'], '07/09/2014 22:00', '07'
+						]
+					],
+					finals: [
+						[
+							['SF 1', 'SF 2'], '07/13/2014 21:00', '06'
+						],
+						[
+							['SF 1', 'SF 2'], '07/12/2014 22:00', '10'
+						]
+					]
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
