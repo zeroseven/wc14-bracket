@@ -19,6 +19,8 @@ $show-baseline-grid:    false;
 $hexagon-size: 152px;
 $hexagon-border: 6px;
 
+$hexagon-size--final: $hexagon-size * 2 - $hexagon-border;
+
 
 
 

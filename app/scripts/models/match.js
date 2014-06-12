@@ -11,9 +11,9 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		initialize: function(attributes, options) {
 			options = options || {};
-			this.home = options.home;
-			this.guest = options.guest;
-			this.stadium = options.stadium;
+			this._home = options.home;
+			this._guest = options.guest;
+			this._stadium = options.stadium;
 
 			this.on('change:result', this.persistResult, this);
 
@@ -26,6 +26,32 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 
 		parse: function(response/*, options*/ ) {
 			return response;
+		},
+
+		home: function(value) {
+			if(value) {
+				this.trigger('team team:home', value);
+				this._home = value;
+			} else {
+				return this._home;
+			}
+		},
+
+		guest: function(value) {
+			if(value) {
+				this.trigger('team team:guest', value);
+				this._guest = value;
+			} else {
+				return this._guest;
+			}
+		},
+
+		stadium: function(value) {
+			if(value) {
+				this._stadium = value;
+			} else {
+				return this._stadium;
+			}
 		},
 
 		result: function() {

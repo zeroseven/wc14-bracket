@@ -62,6 +62,18 @@
 		}
 	};
 
+	var viewId = function(round, index) {
+		if(round === 'finals') {
+			return index === 0 ? 'finale' : 'platz 3';
+		} else {
+			return ({
+				bestOf16: 'AF',
+				quarterFinals: 'VF',
+				semiFinals: 'HF'
+			})[round] + ' ' + (index + 1);
+		}
+	};
+
 	var createKnockoutMatches = function(round, data) {
 		var collection = new wcb.Collections.Match();
 		data.forEach(function(match, index) {
@@ -80,7 +92,7 @@
 			collection.add(model);
 
 			var view = new wcb.Views.KnockoutMatch({
-				id: 'AF ' + (index + 1),
+				id: viewId(round, index),
 				model: model,
 				el: $('#' + id)
 			});

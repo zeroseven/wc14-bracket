@@ -39,7 +39,7 @@
 @mixin hexagon($width, $color-left, $color-right: false) {
 	position: relative;
 	width: $width;
-	height: $width / sqrt(3); // TODO: check if hexagon height is correct
+	height: $width / sqrt(3);
 	@if $color-right != false {
 		@include background-image(linear-gradient(left, $color-left 50%, $color-right 50%));
 	} @else {

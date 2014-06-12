@@ -42,8 +42,6 @@
 	}
 }
 
-
-
 .hexagon--a-b {
 	@include hexagon($hexagon-size, $group-a, $group-b);
 	@include border-colors($group-a, $group-b);
@@ -87,4 +85,78 @@
 .hexagon--qf {
 	@include hexagon($hexagon-size, $quarter-final);
 	@include border-colors($quarter-final, $quarter-final);
+}
+
+.hexagon--sf {
+	@include hexagon($hexagon-size, $semi-final);
+}
+
+.hexagon--consolation {
+	@include hexagon($hexagon-size, $consolation-match);
+}
+
+.hexagon--double {
+	@include flex(0, 0, $hexagon-size--final);
+	@include hexagon($hexagon-size--final, $final-match);
+	@include border-colors($final-match, $final-match);
+}
+
+.hexagon__background--double {
+	@include hexagon($hexagon-size--final - $hexagon-border * 2, #fcf2d1);
+	z-index: 1;
+}
+
+.hexagon__content--double {
+	width: $hexagon-size--final - $hexagon-border * 2;
+	height: $hexagon-size--final - $hexagon-border * 2;
+	top: - ($hexagon-size--final / 3 - $hexagon-border * 2);
+	padding: 0;
+}
+
+.hexagon--final {
+	@include hexagon($hexagon-size, transparent);
+	top: ($hexagon-size / sqrt(3)) / 2 - ($hexagon-border / sqrt(3)) / 2;
+	.hexagon__background {
+		@include hexagon($hexagon-size - $hexagon-border * 2, transparent);
+		z-index: 1;
+	}
+}
+
+.hexagon--champion {
+	@include hexagon($hexagon-size, $final-match);
+	text-align: center;
+	//TODO: 16px?!
+	top: 16px + $hexagon-size - ($hexagon-size / sqrt(3)) / 2 - ($hexagon-border / sqrt(3)) / 2;
+	.hexagon__background {
+		@include hexagon($hexagon-size - $hexagon-border * 2, transparent);
+		z-index: 1;
+	}
+
+	input {
+		background-color: white;
+		border: none;
+		outline: none;
+		font-size: 16px;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	h2 {
+		text-transform: uppercase;
+		line-height: 1;
+		margin: 0;
+	}
+}
+
+.hexagon--final, .hexagon--champion {
+	display: block;
+	left: ($hexagon-size--final - $hexagon-border * 2) / 2 - $hexagon-size / 2;
+}
+
+.hexagon--half {
+	@include hexagon($hexagon-size / 2, white);
+	//TODO: margin-bottom: ($hexagon-size / 6 - $hexagon-border * 2);
+	top: 6px;
+	left: 22px;
+	margin-bottom: 36px;
 }

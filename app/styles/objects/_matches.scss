@@ -1,6 +1,19 @@
 
 .knockout-matches {
   @include flexbox;
+  // @include flex-wrap(wrap);
+}
+
+.knockout-matches--bo16-qf {
+  // margin-top: $hexagon-size--final / 3 - $hexagon-border * 3;
+  margin-top: $hexagon-size--final - $hexagon-size--final / sqrt(3);
+  @include flexbox;
+  @include flex-direction(column);
+}
+
+.knockout-matches--sf-final {
+  margin-left: 200px;
+  @include flexbox;
   @include flex-direction(column);
 }
 
@@ -13,6 +26,11 @@
   & .hexagon {
     z-index: 1;
   }
+}
+
+.knockout__ui-group--sf {
+  //TODO: why border * 3?!
+  margin-top: $hexagon-size--final / 3 - $hexagon-border * 3;
 }
 
 .knockout__ui-group--one {
@@ -35,6 +53,10 @@
   margin-top: 100px;
   @include flexbox;
   @include flex-wrap(wrap);
+}
+
+.match__id {
+  text-transform: uppercase;
 }
 
 .match__date {
@@ -66,7 +88,7 @@
 }
 
 .match--group .match__teams {
-  width: 130px;
+  width: 140px;
   text-align: right;
   padding-right: $half-spacing-unit;
 }
@@ -183,5 +205,16 @@
   }
   .match__teams--guest {
     color: $group-g;
+  }
+}
+
+.hexagon--final {
+  .match__id {
+    font-size: 16px;
+    color: $final-match;
+    margin-top: $half-spacing-unit;
+  }
+  .match__teams {
+    display: none;
   }
 }

@@ -36,19 +36,19 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		stadium: function() {
-			return this.model.stadium.get('name');
+			return this.model.stadium().get('name');
 		},
 
 		city: function() {
-			return this.model.stadium.get('city');
+			return this.model.stadium().get('city');
 		},
 
 		home: function() {
-			return this.model.home.short();
+			return this.model.home().short();
 		},
 
 		guest: function() {
-			return this.model.guest.short();
+			return this.model.guest().short();
 		},
 
 		homeGoals: function() {
@@ -85,6 +85,10 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 			[this.model.get('home'), this.model.get('guest')].forEach(function(eventId) {
 				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setTeam);
 			}.bind(this));
+
+			this.model.on('change:result', this.publishWinner, this);
+			this.model.on('team', this.publishWinner, this);
+			// this.publishWinner();
 		},
 
 		home: function() {
@@ -104,24 +108,40 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		homeName: function() {
-			if(this.model.home !== undefined) {
-				return this.model.home.short();
+			if(this.model.home() !== undefined) {
+				return this.model.home().short();
 			}
 		},
 
 		guestName: function() {
-			if(this.model.guest !== undefined) {
-				return this.model.guest.short();
+			if(this.model.guest() !== undefined) {
+				return this.model.guest().short();
 			}
 		},
 
 		setTeam: function(id, team) {
 			if(id === this.model.get('home')) {
-				this.model.home = team;
+				this.model.home(team);
 			} else if(id === this.model.get('guest')) {
-				this.model.guest = team;
+				this.model.guest(team);
 			}
 			this.render();
+		},
+
+		publishWinner: function() {
+			console.log('publishWinner');
+			if(this.model.finished()) {
+				var result = this.model.result(),
+				    home = this.model.home(),
+				    guest = this.model.guest();
+
+				if(result[0] > result[1] && home !== undefined) {
+					WorldCupBracket.matchEvents.trigger(this.id, this.id, home);
+				} else if(result[0] < result[1]) {
+					WorldCupBracket.matchEvents.trigger(this.id, this.id, guest);
+				}
+
+			}
 		}
 	});
 

@@ -44,15 +44,14 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			this.matches.each(function(match) {
 				if(match.finished()) {
 					var points = match.points();
-					match.home.addPoints(points[0]);
-					match.guest.addPoints(points[1]);
+					match.home().addPoints(points[0]);
+					match.guest().addPoints(points[1]);
 				}
 			});
 
 			this.teams.sort();
 
 			if(this.finished()) {
-				console.log('finished');
 				WorldCupBracket.matchEvents.trigger(this.id + '1', this.id + '1', this.teams.at(0));
 				WorldCupBracket.matchEvents.trigger(this.id + '2', this.id + '2', this.teams.at(1));
 			}
