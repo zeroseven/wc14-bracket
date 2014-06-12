@@ -1,3 +1,22 @@
+@charset "UTF-8";
+/*------------------------------------*\
+    STYLE.SCSS
+\*------------------------------------*/
+/**
+ * Here we start to pull everything together into one big stylesheet.
+ *
+ * SETUP............Settings, tools, mixins, etc.
+ * GENERIC..........normalize.css, reset, shared styles, etc.
+ * BASE.............Basic HTML elements.
+ * OBJECTS..........Objects, abstractions, design patterns.
+ * GUI..............Components and modules.
+ * TRUMPS...........Helpers, overrides, ‘trump-cards’.
+ */
+
+
+
+
+
 // TODO: browsehappy
 .browsehappy {
     margin: 0.2em 0;
@@ -6,35 +25,85 @@
     padding: 0.2em 0;
 }
 
-// $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
-// @import 'sass-bootstrap/lib/bootstrap';
 
+
+
+
+/*------------------------------------*\
+    #SETUP
+\*------------------------------------*/
+/**
+ * Settings, variables and tools.
+ */
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
+@import "compass/css3",
+        "sass-flex-mixin/flex",
+        "settings/all",
+        "tools/functions",
+        "tools/mixins";
 
-@import "tools/variables";
-@import "compass/css3";
-@import "sass-flex-mixin/flex";
-@import "tools/mixins";
 
-@import "generic/clearfix";
 
-@import "objects/flex";
-@import "objects/header";
-@import "objects/hexagons";
-@import "objects/matches";
-@import "objects/groups";
 
-*, *:before, *:after {
-  box-sizing: border-box;
-}
 
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  color: $text-color;
-  margin: $base-spacing-unit;
-  font-size: 10px;
-}
 
-h1 {
+/*------------------------------------*\
+    #GENERIC
+\*------------------------------------*/
+/**
+ * These are far reaching styles that affect and underpin every element on the
+ * page, e.g. `* {}`.
+ */
+@import "generic/all";
 
-}
+
+
+
+
+/*------------------------------------*\
+    #BASE
+\*------------------------------------*/
+/**
+ * These are base HTML elements, things with no classes on them, e.g. `h1 {}`,
+ * `blockquote {}`.
+ */
+@import "base/all";
+
+
+
+
+
+/*------------------------------------*\
+    #OBJECTS
+\*------------------------------------*/
+/**
+ * These are design-free objects, abstractions and design patterns. These create
+ * constructs that you lay your designs over.
+ */
+@import "objects/all";
+
+
+
+
+
+/*------------------------------------*\
+    #GUI
+\*------------------------------------*/
+/**
+ * These are your components and modules; things like buttons, accordions,
+ * carousels, etc.
+ */
+@import "gui/all";
+
+
+
+
+
+/*------------------------------------*\
+    #TRUMPS
+\*------------------------------------*/
+/**
+ * These are helper classes and overrides that should take precedence over all
+ * other styles, e.g. `.float--left {}`.
+ */
+@import "trumps/all";
