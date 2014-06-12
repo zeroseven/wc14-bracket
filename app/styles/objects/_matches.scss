@@ -207,3 +207,14 @@
     color: $group-g;
   }
 }
+
+.hexagon--final {
+  .match__id {
+    font-size: 16px;
+    color: $final-match;
+    margin-top: $half-spacing-unit;
+  }
+  .match__teams {
+    display: none;
+  }
+}
