@@ -145,4 +145,85 @@ describe('WorldCupBracket.Models.Group', function () {
 		});
 	});
 
+	describe('Comparator (points)', function () {
+		// http://de.wikipedia.org/wiki/Fussballweltmeisterschaft_2014#Turnierform
+		var spy;
+		beforeEach(function (done) {
+			spy = jasmine.createSpy('G1');
+			WorldCupBracket.matchEvents.on('G1', spy);
+			var results = [
+				[2, 1], // Deutschland - Portugal
+				[1, 2], // Ghana - USA
+				[2, 1], // Deutschland - Ghana
+				[1, 1], // USA - Portugal
+				[1, 1], // USA - Deutschland
+				[1, 1]  // Portugal - Ghana
+			];
+
+			results.forEach(function(result, index) {
+				group.matches.at(index).result(result);
+			});
+			setTimeout(done, 150);
+		});
+
+		it('looks after points', function() {
+			expect(group.teams.at(0).id).toEqual(25);
+		});
+
+	});
+
+	describe('Comparator (goal difference)', function () {
+		// http://de.wikipedia.org/wiki/Fussballweltmeisterschaft_2014#Turnierform
+		var spy;
+		beforeEach(function (done) {
+			spy = jasmine.createSpy('G1');
+			WorldCupBracket.matchEvents.on('G1', spy);
+			var results = [
+				[1, 1], // Deutschland - Portugal
+				[1, 2], // Ghana - USA
+				[3, 1], // Deutschland - Ghana
+				[1, 1], // USA - Portugal
+				[1, 1], // USA - Deutschland
+				[1, 1]  // Portugal - Ghana
+			];
+
+			results.forEach(function(result, index) {
+				group.matches.at(index).result(result);
+			});
+			setTimeout(done, 150);
+		});
+
+		it('...then after goal difference...', function() {
+			expect(group.teams.at(0).id).toEqual(25);
+		});
+
+	});
+
+	describe('Comparator (goals)', function () {
+		// http://de.wikipedia.org/wiki/Fussballweltmeisterschaft_2014#Turnierform
+		var spy;
+		beforeEach(function (done) {
+			spy = jasmine.createSpy('G1');
+			WorldCupBracket.matchEvents.on('G1', spy);
+			var results = [
+				[1, 1], // Deutschland - Portugal
+				[1, 2], // Ghana - USA
+				[3, 2], // Deutschland - Ghana
+				[1, 1], // USA - Portugal
+				[1, 1], // USA - Deutschland
+				[1, 1]  // Portugal - Ghana
+			];
+
+			results.forEach(function(result, index) {
+				group.matches.at(index).result(result);
+			});
+			setTimeout(done, 150);
+		});
+
+		it('...and at last after goals', function() {
+			expect(group.teams.at(0).id).toEqual(25);
+		});
+
+	});
+
 });

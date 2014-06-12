@@ -10,7 +10,19 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 		initialize: function(attributes, options) {
 			this.teams = new WorldCupBracket.Collections.Team(options.teams, {
 				comparator: function(a, b) {
-					return b.points() - a.points();
+					if (a.points() !== b.points()) {
+						return b.points() - a.points();
+					} else {
+						if (a.goalDif() !== b.goalDif()) { //Tordifferenz alle Spiele
+							return (a.goalDif() > b.goalDif()) ? -1 : 1;
+						} else {
+							if (a.goals() !== b.goals()) {
+								return b.goals() - a.goals();
+							} else {
+								//console.log("DIREKTVERGLEICH")
+							}
+						}
+					}
 				}
 			});
 			this.matches = options.matches;
@@ -39,6 +51,8 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 		updateTable: function() {
 			this.teams.each(function(team) {
 				team.points(0);
+				team.goals(0);
+				team.goalDif(0);
 			});
 
 			this.matches.each(function(match) {
@@ -46,13 +60,21 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 					var points = match.points();
 					match.home.addPoints(points[0]);
 					match.guest.addPoints(points[1]);
+
+					var goals = match.result();
+
+					match.home.addGoals(goals[0]);
+					match.guest.addGoals(goals[1]);
+
+					match.home.addGoalDif(goals[0]-goals[1]);
+					match.guest.addGoalDif(goals[1]-goals[0]);
 				}
 			});
 
 			this.teams.sort();
 
 			if(this.finished()) {
-				console.log('finished');
+
 				WorldCupBracket.matchEvents.trigger(this.id + '1', this.id + '1', this.teams.at(0));
 				WorldCupBracket.matchEvents.trigger(this.id + '2', this.id + '2', this.teams.at(1));
 			}
