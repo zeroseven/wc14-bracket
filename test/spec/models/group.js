@@ -2,12 +2,55 @@
 
 describe('WorldCupBracket.Models.Group', function () {
 	'use strict';
-	var Group = WorldCupBracket.Models.Group;
-	var teams = new WorldCupBracket.Collections.Team();
-	var group = null;
+	var Group = WorldCupBracket.Models.Group,
+	    teams = new WorldCupBracket.Collections.Team(),
+	    group = null,
+			stadiums = new WorldCupBracket.Collections.Stadium(),
+	    //TODO: DRY up!
+	    groupMatches = function(teams) {
+				var data = {
+					'G': [
+						[
+							[0, 1], '06/16/2014 18:00', '04'
+						],
+						[
+							[2, 3], '06/17/2014 00:00', '02'
+						],
+						[
+							[0, 2], '06/21/2014 21:00', '01'
+						],
+						[
+							[3, 1], '06/23/2014 00:00', '12'
+						],
+						[
+							[3, 0], '06/26/2014 18:00', '03'
+						],
+						[
+							[1, 2], '06/26/2014 18:00', '10'
+						]
+					]
+				};
+				var collection = new WorldCupBracket.Collections.Match();
+				var id = 'G';
+				data[id].forEach(function(match, index) {
+					collection.add({
+						id: id + index,
+						date: new Date(match[1])
+					},
+					{
+						home: teams[match[0][0]],
+						guest: teams[match[0][1]],
+						stadium: stadiums.get(match[2])
+					});
+				});
+				return collection;
+			};
 
 	beforeEach(function () {
 		delete localStorage.results;
+		stadiums.reset([
+
+		]);
 		teams.reset([
 			{
 				id: 25,
@@ -31,7 +74,8 @@ describe('WorldCupBracket.Models.Group', function () {
 				id: 'G'
 			},
 			{
-				teams: teams.slice(0, 4)
+				teams: teams.slice(0, 4),
+				matches: groupMatches(teams.slice(0, 4))
 			}
 		);
 	});
@@ -67,7 +111,7 @@ describe('WorldCupBracket.Models.Group', function () {
 	describe('table', function () {
 		var spy;
 		beforeEach(function (done) {
-			spy = jasmine.createSpy('Team A1');
+			spy = jasmine.createSpy('G1');
 			WorldCupBracket.matchEvents.on('G1', spy);
 			var results = [
 				[3, 1], // Deutschland - Portugal

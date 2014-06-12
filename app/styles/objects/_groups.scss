@@ -9,13 +9,14 @@
 
 .group__rank {
 	input {
-		line-height: 20px;
+		line-height: 19px;
 	}
 	label {
-		padding: 5px 15px;
+		padding: 4px 15px;
 		display: inline-block;
 		text-align: center;
 	}
+	margin-bottom: 2px;
 }
 
 .group__border {
