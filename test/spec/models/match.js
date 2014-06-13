@@ -66,7 +66,16 @@ describe('WorldCupBracket.Models.Match', function() {
 		});
 
 		it('doesn\'t report partial results as finished', function() {
-			match.result([6, undefined]);
+			match.result([1, undefined]);
+			expect(match.finished()).not.toBe(true);
+
+			match.result([undefined, 1]);
+			expect(match.finished()).not.toBe(true);
+
+			match.result([1, NaN]);
+			expect(match.finished()).not.toBe(true);
+
+			match.result([NaN, 1]);
 			expect(match.finished()).not.toBe(true);
 		});
 	});

@@ -100,7 +100,9 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			return _.isArray(result) &&
 			       result.length === 2 &&
 			       _.isNumber(result[0]) &&
-			       _.isNumber(result[1]);
+			       !isNaN(result[0]) &&
+			       _.isNumber(result[1]) &&
+			       !isNaN(result[1]);
 		},
 
 		points: function() {

@@ -69,7 +69,7 @@ describe('WorldCupBracket.Models.Group', function () {
 				name: 'USA'
 			}
 		]);
-	  group = new Group(
+		group = new Group(
 			{
 				id: 'G'
 			},
@@ -86,11 +86,11 @@ describe('WorldCupBracket.Models.Group', function () {
 	});
 
 	it('adds a comparator function to teams', function () {
-	  expect(group.teams.comparator).toBeDefined();
+		expect(group.teams.comparator).toBeDefined();
 	});
 
 	it('creates matches', function () {
-	  expect(group.matches).toEqual(jasmine.any(WorldCupBracket.Collections.Match));
+		expect(group.matches).toEqual(jasmine.any(WorldCupBracket.Collections.Match));
 		expect(group.matches.length).toBe(6);
 	});
 
@@ -102,6 +102,10 @@ describe('WorldCupBracket.Models.Group', function () {
 		it('is finished when all matches are finished', function () {
 			group.matches.each(function(match) {
 				expect(group.finished()).not.toBe(true);
+
+				match.result([1, NaN]);
+				expect(group.finished()).not.toBe(true);
+
 				match.result(1, 0);
 			});
 			expect(group.finished()).toBe(true);

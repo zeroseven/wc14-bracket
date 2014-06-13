@@ -270,7 +270,7 @@ module.exports = function(grunt) {
 				dotfiles: true
 			},
 			src: ['**']
-	  }
+		}
 	});
 
 	grunt.registerTask('createDefaultTemplate', function() {

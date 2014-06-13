@@ -17,7 +17,6 @@
 
 	var createGroupMatches = function(data) {
 		var groupMatches = function(id, teams, groupIndex) {
-			console.log(id);
 			var collection = new WorldCupBracket.Collections.Match();
 			data[id].forEach(function(match, index) {
 				collection.add({
