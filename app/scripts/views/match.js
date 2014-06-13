@@ -65,6 +65,10 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 				return Number.parseInt($(this).val(), 10);
 			});
 			this.model.result(result.get());
+		},
+
+		tabIndex : function () {
+			return this.model.matchNum();
 		}
 
 	});
@@ -135,14 +139,57 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 				    home = this.model.home(),
 				    guest = this.model.guest();
 
+				this.$el.find(".match__results--knockout").removeClass("match__results--knockout__draw")
+
 				if(result[0] > result[1] && home !== undefined) {
 					WorldCupBracket.matchEvents.trigger(this.id, this.id, home);
 				} else if(result[0] < result[1]) {
 					WorldCupBracket.matchEvents.trigger(this.id, this.id, guest);
+				} else if(result[0] === result[1]) {
+					this.$el.find(".match__results--knockout").addClass("match__results--knockout__draw")
 				}
 
 			}
-		}
+		},
+
+		isDraw : function () {
+			if(this.model.finished()) {
+				var result = this.model.result();
+				if (result[0] === result[1]) {
+					return " match__results--knockout__draw";
+				}
+			}
+			return "";
+		},
+
+		// tabindex : function () {
+		// 	var id = this.id;
+		// 	var id = id.split(" ");
+		//
+		// 	var tabindex = 0;
+		//
+		// 	console.log(id);
+		//
+		// 	switch (id[0]) {
+		// 		case "AF" :
+		// 			tabindex = 100+parseInt(id[0]*2);
+		// 			break;
+		// 		case "VF" :
+		// 				tabindex = 120+parseInt(id[0]*2);
+		// 				break;
+		// 		case "HF" :
+		// 			tabindex = 130+parseInt(id[0]*2);
+		// 			break;
+		// 		case "platz" :
+		// 			tabindex = 140;
+		// 			break;
+		// 		case "finale" :
+		// 			tabindex = 141;
+		// 			break;
+		// 	}
+		//
+		// 	return tabindex;
+		// }
 	});
 
 })();
