@@ -74,7 +74,6 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 			this.teams.sort();
 
 			if(this.finished()) {
-
 				WorldCupBracket.matchEvents.trigger(this.id + '1', this.id + '1', this.teams.at(0));
 				WorldCupBracket.matchEvents.trigger(this.id + '2', this.id + '2', this.teams.at(1));
 			}

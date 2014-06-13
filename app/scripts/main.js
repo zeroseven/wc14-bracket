@@ -15,16 +15,14 @@
 		};
 	};
 
-	var id2num = {'A':0, 'B':1, 'C':2, 'D':3, 'E':4, 'F':5, 'G':6, 'H':7}
-
 	var createGroupMatches = function(data) {
-		var groupMatches = function(id, teams) {
+		var groupMatches = function(id, teams, groupIndex) {
 			var collection = new WorldCupBracket.Collections.Match();
 			data[id].forEach(function(match, index) {
 				collection.add({
 					id: id + index,
 					date: new Date(match[1]),
-					matchNum: id2num[id]*6 + index + 1
+					matchNum: groupIndex * 2 + Math.floor(index / 2) * 16 + index % 2 + 1
 				},
 				{
 					home: teams[match[0][0]],
@@ -43,7 +41,7 @@
 				id: id
 			}, {
 				teams: groupTeams,
-				matches: groupMatches(id, groupTeams)
+				matches: groupMatches(id, groupTeams, index)
 			});
 			groups.add(group);
 			var view = new wcb.Views.Group({
