@@ -93,6 +93,7 @@
 
 .hexagon--consolation {
 	@include hexagon($hexagon-size, $consolation-match);
+	@include border-colors($consolation-match, $consolation-match);
 }
 
 .hexagon--double {
