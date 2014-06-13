@@ -1,6 +1,6 @@
 .group {
 	@include flex(0, 1, 400px);
-	margin: $half-spacing-unit;
+	margin: $half-spacing-unit $base-spacing-unit $half-spacing-unit 0;
 }
 
 .group__teams {
