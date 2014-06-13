@@ -5,6 +5,8 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 (function() {
 	'use strict';
 
+	var accessor = WorldCupBracket.Mixins.accessor;
+
 	WorldCupBracket.Models.Match = Backbone.Model.extend({
 
 		url: '',
@@ -114,7 +116,9 @@ WorldCupBracket.Models = WorldCupBracket.Models || {};
 					return [1, 1];
 				}
 			}
-		}
+		},
+
+		matchNum: accessor('matchNum')
 	});
 
 })();
