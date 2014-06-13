@@ -156,7 +156,7 @@
 .hexagon--half {
 	@include hexagon($hexagon-size / 2, white);
 	//TODO: margin-bottom: ($hexagon-size / 6 - $hexagon-border * 2);
-	top: 6px;
+	top: 8px;
 	left: 22px;
 	margin-bottom: 36px;
 }

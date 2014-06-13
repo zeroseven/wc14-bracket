@@ -167,7 +167,7 @@
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 
 	<div class="group-matches">
 		<div class="group group--a"></div>
@@ -179,6 +179,20 @@
 		<div class="group group--g"></div>
 		<div class="group group--h"></div>
 	</div>
+
+	<footer class="cf">
+		<div class="float--left">
+			<a id="reset" href="#reset">Alle Ergebnisse löschen</a><br/>
+			<a href="http://github.com/zeroseven/wc14-bracket/issues">Fehler Melden</a>
+		</div>
+		<div class="media float--right">
+			<img class="media__img media__img--rev" src="zeroseven.png" alt="zeroseven design studios" height="30" />
+			<div class="media__body text--right">
+				Für euch und uns aus den zeroseven design studios.<br/>
+				<a href="http://www.zeroseven.de">www.zeroseven.de</a>
+			</div>
+		</div>
+	</footer>
 
 
 
@@ -220,6 +234,15 @@
 	<script>
 		$(document).ready(function() {
 			'use strict';
+
+			$('#reset').on('click', function() {
+				if(window.confirm('Wirklich alle Eingaben zurücksetzten?') === true) {
+					delete localStorage.results;
+					window.location.reload();
+				}
+				return false;
+			});
+
 			WorldCupBracket.init({
 				stadiums: [{
 					id: '01',
