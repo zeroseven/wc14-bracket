@@ -40,7 +40,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		city: function() {
-			return this.model.stadium().get('city');
+			return this.model.stadium().get('city').replace(/ /g, '\u00a0');
 		},
 
 		home: function() {
