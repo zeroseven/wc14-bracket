@@ -1,0 +1,80 @@
+/*------------------------------------*\
+		#MIXINS
+\*------------------------------------*/
+/**
+* Some nice mixins we can use to make our lives easier. Feel free to add as
+* many as you like!
+*/
+
+
+
+
+
+/**
+* Create a fully formed type style (sizing and vertical rhythm) by passing in a
+* single value, e.g.:
+*
+	`@include font-size(10px);`
+*
+*/
+@mixin font-size($font-size, $line-height: true) {
+		font-size: $font-size;
+		font-size: ($font-size / $base--font-size) * 1rem;
+
+		@if $line-height == true {
+				line-height: ceil($font-size / $base--line-height) * ($base--line-height / $font-size);
+		}
+}
+
+
+
+
+
+/**
+* Create nice hexagons!
+*
+	`@include hexagon($hexagon-size, $group-a, $group-b);`
+*
+*/
+@mixin hexagon($width, $color-left, $color-right: false) {
+	position: relative;
+	width: $width;
+	height: $width / sqrt(3);
+	@if $color-right != false {
+		@include background-image(linear-gradient(left, $color-left 50%, $color-right 50%));
+	} @else {
+		background-color: $color-left;
+	}
+
+	z-index: -1;
+
+	&:before, &:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: '';
+		width: inherit;
+		height: inherit;
+		border: inherit;
+		background: inherit;
+		z-index: -1;
+	}
+
+	&:before {
+		@include transform(rotateZ(-60deg));
+		@if $color-right != false {
+			@include background-image(linear-gradient(150deg, $color-left 50%, $color-right 50%));
+		} @else {
+			background-color: $color-left;
+		}
+	}
+
+	&:after {
+		@include transform(rotateZ(60deg));
+		@if $color-right != false {
+			@include background-image(linear-gradient(30deg, $color-left 50%, $color-right 50%));
+		} @else {
+			background-color: $color-left;
+		}
+	}
+}

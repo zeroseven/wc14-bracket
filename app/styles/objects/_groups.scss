@@ -1,0 +1,144 @@
+.group {
+	@include flex(0, 1, 400px);
+	margin: $half-spacing-unit $base-spacing-unit $half-spacing-unit 0;
+}
+
+.group__teams {
+	font-weight: normal;
+}
+
+.group__rank {
+	input {
+		line-height: 19px;
+	}
+	label {
+		padding: 4px 15px;
+		display: inline-block;
+		text-align: center;
+	}
+	margin-bottom: 2px;
+}
+
+.group__border {
+	border-width: 1px;
+	border-style: solid;
+	outline: none;
+}
+
+.group__border--main {
+	border-width: 0;
+	border-left-width: 3px;
+	border-left-style: solid;
+	margin-bottom: $base-spacing-unit;
+}
+
+.group__border--bottom {
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.group__rank, .group__border--main {
+	padding-left: $half-spacing-unit;
+}
+
+
+.group__background {
+	color: white;
+}
+
+.group--a {
+	&, & .group__border {
+		border-color: $group-a;
+	}
+	.group__name, .group__text {
+		color: $group-a;
+	}
+	.group__background {
+		background-color: $group-a;
+	}
+}
+
+.group--b {
+	&, & .group__border {
+		border-color: $group-b;
+	}
+	.group__name, .group__text {
+		color: $group-b;
+	}
+	.group__background {
+		background-color: $group-b;
+	}
+}
+
+.group--c {
+	&, & .group__border {
+		border-color: $group-c;
+	}
+	.group__name, .group__text {
+		color: $group-c;
+	}
+	.group__background {
+		background-color: $group-c;
+	}
+}
+
+.group--d {
+	&, & .group__border {
+		border-color: $group-d;
+	}
+	.group__name, .group__text {
+		color: $group-d;
+	}
+	.group__background {
+		background-color: $group-d;
+	}
+}
+
+.group--e {
+	&, & .group__border {
+		border-color: $group-e;
+	}
+	.group__name, .group__text {
+		color: $group-e;
+	}
+	.group__background {
+		background-color: $group-e;
+	}
+}
+
+.group--f {
+	&, & .group__border {
+		border-color: $group-f;
+	}
+	.group__name, .group__text {
+		color: $group-f;
+	}
+	.group__background {
+		background-color: $group-f;
+	}
+}
+
+.group--g {
+	&, & .group__border {
+		border-color: $group-g;
+	}
+	.group__name, .group__text {
+		color: $group-g;
+	}
+	.group__background {
+		background-color: $group-g;
+	}
+}
+
+.group--h {
+	&, & .group__border {
+		border-color: $group-h;
+	}
+	.group__name, .group__text {
+		color: $group-h;
+	}
+	.group__background {
+		background-color: $group-h;
+	}
+}

@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    #VARS
+\*------------------------------------*/
+/**
+ * Generic, non-specific variables.
+ */
+$base--font-size:       10px;
+$base--line-height:     15px;
+
+$show-baseline-grid:    false;
+
+
+
+
+
+/**
+ * Hexagons
+ */
+$hexagon-size: 152px;
+$hexagon-border: 6px;
+
+$hexagon-size--final: $hexagon-size * 2 - $hexagon-border;
+
+
+
+
+
+/**
+ * Framework variables. We don’t need to edit these, they’re just handy
+ * variables sourced from other settings.
+ */
+$base--spacing-unit:    $base--line-height;
+
+$base-spacing-unit:     20px;
+$half-spacing-unit:     $base-spacing-unit / 2;

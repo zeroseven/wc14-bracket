@@ -1,0 +1,168 @@
+.hexagon {
+	@include flex(0, 0, $hexagon-size - $hexagon-border);
+}
+
+.hexagon--full {
+	@include flex(0, 0, $hexagon-size);
+}
+
+.hexagon--push {
+	margin-left: ($hexagon-size - $hexagon-border) / 2;
+}
+
+.hexagon--spacer {
+	@include flex(0, 0, $hexagon-size - $hexagon-border * 2);
+}
+
+.hexagon__background {
+	@include hexagon($hexagon-size - $hexagon-border * 2, white);
+	left: $hexagon-border;
+	top: $hexagon-border / sqrt(3);
+	z-index: 1;
+}
+
+.hexagon__content {
+	background-color: transparent;
+	position: relative;
+	width: $hexagon-size - $hexagon-border * 2;
+	height: $hexagon-size - $hexagon-border * 2;
+	top: - ($hexagon-size / 3 - $hexagon-border * 2);
+	padding: $half-spacing-unit;
+	z-index: 2;
+}
+
+// color definitions
+
+@mixin border-colors($group-a, $group-b) {
+	.group__border--home {
+		border-color: $group-a;
+	}
+	.group__border--guest {
+		border-color: $group-b;
+	}
+}
+
+.hexagon--a-b {
+	@include hexagon($hexagon-size, $group-a, $group-b);
+	@include border-colors($group-a, $group-b);
+}
+
+.hexagon--b-a {
+	@include hexagon($hexagon-size, $group-b, $group-a);
+	@include border-colors($group-b, $group-a);
+}
+
+.hexagon--c-d {
+	@include hexagon($hexagon-size, $group-c, $group-d);
+	@include border-colors($group-c, $group-d);
+}
+
+.hexagon--d-c {
+	@include hexagon($hexagon-size, $group-d, $group-c);
+	@include border-colors($group-d, $group-c);
+}
+
+.hexagon--e-f {
+	@include hexagon($hexagon-size, $group-e, $group-f);
+	@include border-colors($group-e, $group-f);
+}
+
+.hexagon--f-e {
+	@include hexagon($hexagon-size, $group-f, $group-e);
+	@include border-colors($group-f, $group-e);
+}
+
+.hexagon--g-h {
+	@include hexagon($hexagon-size, $group-g, $group-h);
+	@include border-colors($group-g, $group-h);
+}
+
+.hexagon--h-g {
+	@include hexagon($hexagon-size, $group-h, $group-g);
+	@include border-colors($group-h, $group-g);
+}
+
+.hexagon--qf {
+	@include hexagon($hexagon-size, $quarter-final);
+	@include border-colors($quarter-final, $quarter-final);
+}
+
+.hexagon--sf {
+	@include hexagon($hexagon-size, $semi-final);
+}
+
+.hexagon--consolation {
+	@include hexagon($hexagon-size, $consolation-match);
+	@include border-colors($consolation-match, $consolation-match);
+}
+
+.hexagon--double {
+	@include flex(0, 0, $hexagon-size--final);
+	@include hexagon($hexagon-size--final, $final-match);
+	@include border-colors($final-match, $final-match);
+}
+
+.hexagon__background--double {
+	@include hexagon($hexagon-size--final - $hexagon-border * 2, #fcf2d1);
+	z-index: 1;
+}
+
+.hexagon__content--double {
+	width: $hexagon-size--final - $hexagon-border * 2;
+	height: $hexagon-size--final - $hexagon-border * 2;
+	top: - ($hexagon-size--final / 3 - $hexagon-border * 2);
+	padding: 0;
+}
+
+.hexagon--final {
+	@include hexagon($hexagon-size, transparent);
+	top: ($hexagon-size / sqrt(3)) / 2 - ($hexagon-border / sqrt(3)) / 2;
+	.hexagon__background {
+		@include hexagon($hexagon-size - $hexagon-border * 2, transparent);
+		z-index: 1;
+	}
+}
+
+.hexagon--champion {
+	@include hexagon($hexagon-size, $final-match);
+	text-align: center;
+	//TODO: 16px?!
+	top: 16px + $hexagon-size - ($hexagon-size / sqrt(3)) / 2 - ($hexagon-border / sqrt(3)) / 2;
+	.hexagon__background {
+		@include hexagon($hexagon-size - $hexagon-border * 2, transparent);
+		z-index: 1;
+	}
+
+	input {
+		background-color: white;
+		border: none;
+		outline: none;
+		font-size: 16px;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+
+	h2 {
+		text-transform: uppercase;
+		line-height: 1;
+		margin: 0;
+	}
+}
+
+.hexagon--final, .hexagon--champion {
+	display: block;
+	left: ($hexagon-size--final - $hexagon-border * 2) / 2 - $hexagon-size / 2;
+}
+
+.hexagon--half {
+	@include hexagon($hexagon-size / 2, white);
+	//TODO: margin-bottom: ($hexagon-size / 6 - $hexagon-border * 2);
+	top: 8px;
+	left: 22px;
+	margin-bottom: 36px;
+
+	img {
+		margin: auto;
+		display: block;
+	}
+}
