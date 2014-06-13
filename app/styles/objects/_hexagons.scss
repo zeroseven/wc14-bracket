@@ -103,7 +103,7 @@
 }
 
 .hexagon__background--double {
-	@include hexagon($hexagon-size--final - $hexagon-border * 2, #fcf2d1);
+	@include hexagon($hexagon-size--final - $hexagon-border * 2, #fdfaed);
 	z-index: 1;
 }
 
