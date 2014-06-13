@@ -33,7 +33,6 @@
 
 				});
 			});
-			console.log(collection)
 			return collection;
 		};
 
@@ -54,6 +53,18 @@
 			view.render();
 		});
 	};
+
+	var stadiumViewCreate = function () {
+		var view = new WorldCupBracket.Views.StadiumView({
+			model: WorldCupBracket.Models.Stadium,
+		});
+		view.render();
+
+	var tableView = new WorldCupBracket.Views.StadiumTable({
+		collection: stadiums
+	});
+	tableView.render();
+	}
 
 	var koId = function(round, index) {
 		if(round === 'finals') {
@@ -125,7 +136,6 @@
 			teams = new wcb.Collections.Team();
 			teams.reset(data.teams);
 
-
 			groups = new wcb.Collections.Group();
 
 			var index = 49;
@@ -136,6 +146,9 @@
 			}.bind(this));
 
 			createGroupMatches(data.groupMatches);
+
+			stadiumViewCreate();
+
 		}
 	};
 })();
