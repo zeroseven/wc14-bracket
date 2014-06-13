@@ -15,6 +15,9 @@
   margin-left: 200px;
   @include flexbox;
   @include flex-direction(column);
+  .knockout__ui-group--three {
+    z-index: 4;
+  }
 }
 
 .knockout__ui-group {
@@ -35,14 +38,17 @@
 
 .knockout__ui-group--one {
   @include order(1);
+  z-index: 4;
 }
 
 .knockout__ui-group--two {
   @include order(2);
+  z-index: 3;
 }
 
 .knockout__ui-group--three {
   @include order(3);
+  z-index: 1;
 }
 
 .match--knockout {
