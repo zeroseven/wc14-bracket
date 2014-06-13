@@ -118,6 +118,10 @@
   width: auto;
   text-align: center;
   border: none;
+
+  &.match__results--knockout__draw input {
+    background-color: rgba(255,0,0,0.8);
+  }
 }
 
 .goals {

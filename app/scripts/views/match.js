@@ -135,13 +135,27 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 				    home = this.model.home(),
 				    guest = this.model.guest();
 
+				this.$el.find(".match__results--knockout").removeClass("match__results--knockout__draw")
+
 				if(result[0] > result[1] && home !== undefined) {
 					WorldCupBracket.matchEvents.trigger(this.id, this.id, home);
 				} else if(result[0] < result[1]) {
 					WorldCupBracket.matchEvents.trigger(this.id, this.id, guest);
+				} else if(result[0] === result[1]) {
+					this.$el.find(".match__results--knockout").addClass("match__results--knockout__draw")
 				}
 
 			}
+		},
+
+		isDraw : function () {
+			if(this.model.finished()) {
+				var result = this.model.result();
+				if (result[0] === result[1]) {
+					return " match__results--knockout__draw";
+				}
+			}
+			return "";
 		}
 	});
 
