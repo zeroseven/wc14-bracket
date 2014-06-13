@@ -103,7 +103,7 @@
 }
 
 .hexagon__background--double {
-	@include hexagon($hexagon-size--final - $hexagon-border * 2, #fcf2d1);
+	@include hexagon($hexagon-size--final - $hexagon-border * 2, #fdfaed);
 	z-index: 1;
 }
 
@@ -163,6 +163,10 @@
 
 	img {
 		margin: auto;
+		position: relative;
+		top: -10px;
 		display: block;
+		width: 70px;
+		height: 70px;
 	}
 }
