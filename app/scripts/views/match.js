@@ -10,6 +10,8 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		return value < 10 ? '0' + value : value;
 	};
 
+	var days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+
 	var Match = Backbone.View.extend({
 
 		events: {
@@ -17,7 +19,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		initialize: function() {
-
+			
 		},
 
 		render: function() {
@@ -28,8 +30,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		day: function() {
 			var date = this.model.get('date');
 			var day = date.getDay();
-			var days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
-			return days[day];
+			return days[day] + '.';
 		},
 
 		date: function() {
