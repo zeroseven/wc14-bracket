@@ -19,7 +19,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 			this.listenTo(this.model, 'change', this.render);
 
 			[this.idFirst(), this.idSecond()].forEach(function(eventId) {
-				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setWinners);
+				//this.listenTo(WorldCupBracket.matchEvents, eventId, this.setWinners);
 			}.bind(this));
 		},
 

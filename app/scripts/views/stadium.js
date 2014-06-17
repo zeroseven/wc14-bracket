@@ -6,17 +6,17 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	'use strict';
 
 	var mapGrid =  [
-		[null, null, null, "", null, null, "", null, null],
-		[null, "", "", "", "", "", null, null, null],
-		[null, null, "", "12", "", "", "", "01", "02"],
-		["", "", "", "", "", "", "", "", "03"],
-		[null, null, null, "", "", "", "", "04", ""],
-		[null, null, null, "11", "", "10", "", "", null],
-		[null, null, null, null, "", "", "", "", "05"],
-		[null, null, null, null, "", "", "07", "06", null],
-		[null, null, null, null, null, null, "08", null, null],
-		[null, null, null, null, "", "", null, null, null],
-		[null, null, null, null, null, "09", null, null, null],
+		[null, null, null, '', null, null, '', null, null],
+		[null, '', '', '', '', '', null, null, null],
+		[null, null, '', '12', '', '', '', '01', '02'],
+		['', '', '', '', '', '', '', '', '03'],
+		[null, null, null, '', '', '', '', '04', ''],
+		[null, null, null, '11', '', '10', '', '', null],
+		[null, null, null, null, '', '', '', '', '05'],
+		[null, null, null, null, '', '', '07', '06', null],
+		[null, null, null, null, null, null, '08', null, null],
+		[null, null, null, null, '', '', null, null, null],
+		[null, null, null, null, null, '09', null, null, null]
 	]
 
 	WorldCupBracket.Views.StadiumView = Backbone.View.extend({
@@ -33,7 +33,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 					case null:
 							that.$el.find('.stadium--row__'+y).append('<div class="stadium--hexagon stadium--hexagon--pusher"></div>');
 						break;
-					case "":
+					case '':
 							that.$el.find('.stadium--row__'+y).append('<div class="stadium--hexagon stadium--hexagon--blank"><div class="stadium--hexagon--inner"></div></div>');
 						break;
 					default:
@@ -41,13 +41,13 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 							that.$el.find('.stadium--row__'+y).append('<div class="stadium--hexagon stadium--hexagon--stadium stadium-highlightable" data-stadium="'+stadium.get("name")+'"><div class="stadium--hexagon--inner">'+cell+'</div></div>');
 						break;
 					}
-				})
-			})
+				});
+			});
 		}
 	});
 
 	WorldCupBracket.Views.StadiumTable = Backbone.View.extend({
-		el: $(".stadium-table"),
+		el: $('.stadium-table'),
 		events: {
 		},
 		render: function() {
@@ -55,16 +55,6 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 			this.collection.each(function(p) {
 				that.$el.append(new WorldCupBracket.Views.StadiumTableTr({model: p}).render());
 			});
-
-			$('.stadium-highlightable').hover(function () {
-				var that = $(this);
-				$('.stadium-highlightable').each(function(i, el) {
-					if ($(this).data("stadium") === that.data("stadium"))
-						$(this).addClass('stadium-highlighted');
-				})
-			}, function () {
-				$('.stadium-highlighted').removeClass('stadium-highlighted');
-			})
 		}
 	});
 

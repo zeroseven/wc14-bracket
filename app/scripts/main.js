@@ -63,7 +63,7 @@
 		collection: stadiums
 	});
 	tableView.render();
-	}
+	};
 
 	var koId = function(round, index) {
 		if(round === 'finals') {
@@ -89,6 +89,10 @@
 		}
 	};
 
+	var createChampion = function() {
+		new wcb.Views.Champion();
+	};
+
 	var createKnockoutMatches = function(round, data, startIndex, previousMatches) {
 		var collection = new wcb.Collections.Match();
 		data.forEach(function(match, index) {
@@ -108,7 +112,6 @@
 			collection.add(model);
 			var view;
 			if (id === 'consolation') {
-				console.log("consolationView");
 				view = new wcb.Views.ConsolationMatch({
 					id: viewId(round, index),
 					model: model,
@@ -163,9 +166,22 @@
 			}.bind(this));
 
 			createGroupMatches(data.groupMatches);
+			createChampion();
 
 			stadiumViewCreate();
 
+			window.setTimeout(function () {
+				$('.stadium-highlightable').hover(function () {
+					var that = $(this);
+					$('.stadium-highlightable').each(function() {
+						if ($(this).data('stadium') === that.data('stadium')) {
+							$(this).addClass('stadium-highlighted');
+						}
+					});
+				}, function () {
+					$('.stadium-highlighted').removeClass('stadium-highlighted');
+				});
+			}, 800);
 		}
 	};
 })();

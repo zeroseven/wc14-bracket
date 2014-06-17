@@ -95,12 +95,12 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 		initialize: function() {
 			Match.prototype.initialize.apply(this, arguments);
-			var setTeam = _.debounce(this.setTeam, 150);
+			//var setTeam = _.debounce(this.setTeam, 150);
 			[this.model.get('home'), this.model.get('guest')].forEach(function(eventId) {
-				this.listenTo(WorldCupBracket.matchEvents, eventId, setTeam);
+				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setTeam);
 			}.bind(this));
 
-			var publishWinner = _.debounce(this.publishWinner, 150);
+			var publishWinner = _.debounce(this.publishWinner, 10);
 
 			this.model.on('change:result', publishWinner, this);
 			this.model.on('team', publishWinner, this);

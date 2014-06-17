@@ -87,6 +87,8 @@
   }
   .match__city {
     text-align: center;
+    position: relative;
+    z-index: 10;
   }
 }
 
