@@ -89,7 +89,7 @@
 		}
 	};
 
-	var createKnockoutMatches = function(round, data, startIndex) {
+	var createKnockoutMatches = function(round, data, startIndex, previousMatches) {
 		var collection = new wcb.Collections.Match();
 		data.forEach(function(match, index) {
 			var id = koId(round, index);
@@ -106,14 +106,26 @@
 				}
 			);
 			collection.add(model);
-			var view = new wcb.Views.KnockoutMatch({
-				id: viewId(round, index),
-				model: model,
-				el: $('#' + id)
-			});
+			var view;
+			if (id === 'consolation') {
+				console.log("consolationView");
+				view = new wcb.Views.ConsolationMatch({
+					id: viewId(round, index),
+					model: model,
+					semiFinals: previousMatches,
+					el: $('#' + id)
+				});
+			} else {
+				view = new wcb.Views.KnockoutMatch({
+					id: viewId(round, index),
+					model: model,
+					el: $('#' + id)
+				});
+			}
+
 			view.render();
 		});
-		return startIndex+collection.length;
+		return collection;
 	};
 
 	var matchEvents = _.extend({}, Backbone.Events);
@@ -137,11 +149,17 @@
 
 			groups = new wcb.Collections.Group();
 
+
+
+
 			var index = 49;
+			var previousMatches = [];
 			// knockout must be defined before groups to catch matchEvents
 			_.pairs(data.knockoutMatches).forEach(function(args) {
+				index += previousMatches.length;
 				args.push(index);
-				index = createKnockoutMatches.apply(this, args);
+				args.push(previousMatches);
+				previousMatches = createKnockoutMatches.apply(this, args);
 			}.bind(this));
 
 			createGroupMatches(data.groupMatches);

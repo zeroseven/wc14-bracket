@@ -48,6 +48,7 @@ $maphex_fontsize: 1.2em;
 	color: #ffffff;
 	.stadium--hexagon--inner {
 		@include hexagon($maphex-size - $maphex-border*2, #35b5a3);
+		line-height: $maphex-size / sqrt(3);
 		vertical-align: middle;
 		text-align: center;
 	}
