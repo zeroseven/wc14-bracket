@@ -1,10 +1,15 @@
 
-$maphex-size : 60px;
-$maphex-border : 2px;
+$maphex-size : 24px;
+$maphex-border : 1.5px;
+$maphex_fontsize: 1.2em;
+
+.stadium {
+	float: right;
+}
 
 .stadium-view {
 	padding: 10px;
-	float: left;
+	float: right;
 }
 
 .stadium--row {
@@ -24,31 +29,31 @@ $maphex-border : 2px;
 	height: 100%;
 }
 
+.stadium-view .stadium--hexagon .stadium--hexagon--inner {
+	z-index: 1;
+	left: $maphex-border;
+	top: $maphex-border / sqrt(3);
+}
+
 .stadium--hexagon--blank {
 	@include hexagon($maphex-size, #12ae98, false);
-
-
 	.stadium--hexagon--inner {
 		@include hexagon($maphex-size - $maphex-border*2, #ffffff);
-		left: $maphex-border;
-		top: $maphex-border / sqrt(3);
-		z-index: 1;
 	}
 }
 
 .stadium--hexagon--stadium {
 	@include hexagon($maphex-size, #12ae98, false);
-	font-size: 2em;
+	font-size: $maphex-fontsize;
 	color: #ffffff;
-	text-align: center;
 	.stadium--hexagon--inner {
 		@include hexagon($maphex-size - $maphex-border*2, #35b5a3);
-		left: $maphex-border;
-		top: $maphex-border / sqrt(3);
-		z-index: 1;
+		vertical-align: middle;
+		text-align: center;
 	}
-
 }
+
+
 
 .stadium-table-container {
 	float: left;
@@ -59,7 +64,37 @@ $maphex-border : 2px;
 		td {
 			padding: 5px;
 		}
+		.stadium-table--city {
+			width: 77px;
+		}
+		.stadium-table--name {
+			width: 102px;
+		}
 	}
+}
 
+.stadium-highlightable {
+	padding-left: 2px;
+	padding-right: 2px;
+}
 
+.stadium-highlighted {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	color: #ffffff;
+	background-color: $quarter-final;
+	padding-left: 2px;
+}
+
+.stadium--hexagon.stadium-highlightable {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.stadium-highlighted .stadium--hexagon--inner,
+.stadium-highlighted .stadium--hexagon--inner:before,
+.stadium-highlighted .stadium--hexagon--inner:after {
+	background-color: #ffffff;
+	color: #35b5a3;
 }

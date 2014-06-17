@@ -55,6 +55,7 @@
 	var stadiumViewCreate = function () {
 		var view = new WorldCupBracket.Views.StadiumView({
 			model: WorldCupBracket.Models.Stadium,
+			collection: stadiums
 		});
 		view.render();
 

@@ -20,16 +20,12 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 	]
 
 	WorldCupBracket.Views.StadiumView = Backbone.View.extend({
-		el: $(".stadium-view"),
+		el: $('.stadium-view'),
 		events: {
-
-		},
-		initialize: function() {
 
 		},
 		render: function () {
 			var that = this;
-
 			$.each(mapGrid, function(y, row) {
 				that.$el.append('<div class="stadium--row stadium--row__'+y+'"></div>');
 				$.each(row, function(x, cell) {
@@ -41,7 +37,8 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 							that.$el.find('.stadium--row__'+y).append('<div class="stadium--hexagon stadium--hexagon--blank"><div class="stadium--hexagon--inner"></div></div>');
 						break;
 					default:
-							that.$el.find('.stadium--row__'+y).append('<div class="stadium--hexagon stadium--hexagon--stadium"><div class="stadium--hexagon--inner">'+cell+'</div></div>');
+							var stadium = that.collection._byId[cell];
+							that.$el.find('.stadium--row__'+y).append('<div class="stadium--hexagon stadium--hexagon--stadium stadium-highlightable" data-stadium="'+stadium.get("name")+'"><div class="stadium--hexagon--inner">'+cell+'</div></div>');
 						break;
 					}
 				})
@@ -51,12 +48,23 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 
 	WorldCupBracket.Views.StadiumTable = Backbone.View.extend({
 		el: $(".stadium-table"),
+		events: {
+		},
 		render: function() {
-			console.log("rendering ", this.collection.models)
 			var that = this;
 			this.collection.each(function(p) {
 				that.$el.append(new WorldCupBracket.Views.StadiumTableTr({model: p}).render());
 			});
+
+			$('.stadium-highlightable').hover(function () {
+				var that = $(this);
+				$('.stadium-highlightable').each(function(i, el) {
+					if ($(this).data("stadium") === that.data("stadium"))
+						$(this).addClass('stadium-highlighted');
+				})
+			}, function () {
+				$('.stadium-highlighted').removeClass('stadium-highlighted');
+			})
 		}
 	});
 

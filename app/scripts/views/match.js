@@ -17,12 +17,19 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		initialize: function() {
-			// this.listenTo(this.model, 'change', this.render);
+
 		},
 
 		render: function() {
 			this.$el.html(this.template(this));
 			return this;
+		},
+
+		day: function() {
+			var date = this.model.get('date');
+			var day = date.getDay();
+			var days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+			return days[day];
 		},
 
 		date: function() {
