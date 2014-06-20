@@ -114,6 +114,15 @@
 }
 
 .match__team-fields {
+  position: relative;
+  div {
+    margin: 0;
+    height: 20px;
+    left: 5px;
+    right: 5px;
+    position: absolute;
+    line-height: normal;
+  }
   input {
     margin: 5px;
     text-align: center;
@@ -248,3 +257,23 @@
     display: none;
   }
 }
+
+.team-highlightable {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.team-highlighted {
+  color: #ffffff;
+  background-color: $consolation-match;
+}
+
+.match__team-fields .team-highlighted {
+  background-color: $consolation-match;
+  opacity: 0.6;
+}
+
+// .stadium--hexagon.stadium-highlightable {
+//   padding-left: 0;
+//   padding-right: 0;
+// }

@@ -12,7 +12,6 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
         initialize: function () {
             var that = this;
             this.listenTo(WorldCupBracket.matchEvents, 'finale', function (e,winner) {
-              console.log('listend to finale', winner);
               that.champion = winner.name();
               this.render();
             });

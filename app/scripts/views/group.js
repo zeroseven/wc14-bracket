@@ -40,10 +40,20 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 			return 'Gruppe ' + this.model.id;
 		},
 
-		teams: function() {
-			return this.model.teams.map(function(team) {
-				return team.get('name');
-			}).join(' | ');
+		teama : function() {
+			return this.model.teams.models[0].get('name');
+		},
+
+		teamb : function() {
+			return this.model.teams.models[1].get('name');
+		},
+
+		teamc : function() {
+			return this.model.teams.models[2].get('name');
+		},
+
+		teamd : function() {
+			return this.model.teams.models[3].get('name');
 		},
 
 		idFirst: function() {

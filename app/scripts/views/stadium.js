@@ -17,7 +17,7 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		[null, null, null, null, null, null, '08', null, null],
 		[null, null, null, null, '', '', null, null, null],
 		[null, null, null, null, null, '09', null, null, null]
-	]
+	];
 
 	WorldCupBracket.Views.StadiumView = Backbone.View.extend({
 		el: $('.stadium-view'),

@@ -181,6 +181,18 @@
 				}, function () {
 					$('.stadium-highlighted').removeClass('stadium-highlighted');
 				});
+
+
+				$('.team-highlightable').hover(function () {
+					var that = $(this);
+					$('.team-highlightable').each(function() {
+						if ($(this).data('team') === that.data('team')) {
+							$(this).addClass('team-highlighted');
+						}
+					});
+				}, function () {
+					$('.team-highlighted').removeClass('team-highlighted');
+				});
 			}, 800);
 		}
 	};
