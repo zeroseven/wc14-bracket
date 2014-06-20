@@ -1,0 +1,98 @@
+
+$maphex-size : 24px;
+$maphex-border : 1.5px;
+$maphex_fontsize: 1.2em;
+
+.stadium {
+	float: right;
+}
+
+.stadium-view {
+	padding: 10px;
+	float: right;
+}
+
+.stadium--row {
+	height: $maphex-size - ($maphex-size/2)*0.32004038938;
+	&:nth-child(even) {
+		margin-left: $maphex-size/2;
+	}
+}
+
+.stadium--hexagon {
+	float: left;
+	margin-right: -$maphex-border;
+}
+
+.stadium--hexagon--pusher {
+	width: $maphex-size;
+	height: 100%;
+}
+
+.stadium-view .stadium--hexagon .stadium--hexagon--inner {
+	z-index: 1;
+	left: $maphex-border;
+	top: $maphex-border / sqrt(3);
+}
+
+.stadium--hexagon--blank {
+	@include hexagon($maphex-size, #12ae98, false);
+	.stadium--hexagon--inner {
+		@include hexagon($maphex-size - $maphex-border*2, #ffffff);
+	}
+}
+
+.stadium--hexagon--stadium {
+	@include hexagon($maphex-size, #12ae98, false);
+	font-size: $maphex-fontsize;
+	color: #ffffff;
+	.stadium--hexagon--inner {
+		@include hexagon($maphex-size - $maphex-border*2, #35b5a3);
+		line-height: $maphex-size / sqrt(3);
+		vertical-align: middle;
+		text-align: center;
+	}
+}
+
+
+
+.stadium-table-container {
+	float: left;
+	h2 {
+		color: #12ae98;
+	}
+	.stadium-table {
+		td {
+			padding: 5px;
+		}
+		.stadium-table--city {
+			width: 77px;
+		}
+		.stadium-table--name {
+			width: 102px;
+		}
+	}
+}
+
+.stadium-highlightable {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.stadium-highlighted {
+	color: #ffffff;
+	background-color: $quarter-final;
+	padding-left: 2px;
+}
+
+.stadium--hexagon.stadium-highlightable {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.stadium-highlighted .stadium--hexagon--inner,
+.stadium-highlighted .stadium--hexagon--inner:before,
+.stadium-highlighted .stadium--hexagon--inner:after {
+	background-color: #ffffff;
+	color: #35b5a3;
+}

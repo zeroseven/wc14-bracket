@@ -10,6 +10,8 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		return value < 10 ? '0' + value : value;
 	};
 
+	var days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+
 	var Match = Backbone.View.extend({
 
 		events: {
@@ -17,12 +19,18 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		initialize: function() {
-			// this.listenTo(this.model, 'change', this.render);
+
 		},
 
 		render: function() {
 			this.$el.html(this.template(this));
 			return this;
+		},
+
+		day: function() {
+			var date = this.model.get('date');
+			var day = date.getDay();
+			return days[day] + '.';
 		},
 
 		date: function() {
@@ -81,16 +89,18 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		className: 'match match--group'
 	});
 
-	WorldCupBracket.Views.KnockoutMatch = Match.extend({
+
+	var KnockoutMatch = WorldCupBracket.Views.KnockoutMatch = Match.extend({
 		template: JST['app/scripts/templates/knockout-match.hbs'],
 
 		initialize: function() {
 			Match.prototype.initialize.apply(this, arguments);
+			//var setTeam = _.debounce(this.setTeam, 150);
 			[this.model.get('home'), this.model.get('guest')].forEach(function(eventId) {
 				this.listenTo(WorldCupBracket.matchEvents, eventId, this.setTeam);
 			}.bind(this));
 
-			var publishWinner = _.debounce(this.publishWinner, 150);
+			var publishWinner = _.debounce(this.publishWinner, 10);
 
 			this.model.on('change:result', publishWinner, this);
 			this.model.on('team', publishWinner, this);
@@ -135,7 +145,6 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 		},
 
 		publishWinner: function() {
-			console.log(this.id, 'publishWinner');
 			if(this.model.finished()) {
 				var result = this.model.result(),
 				    home = this.model.home(),
@@ -162,6 +171,35 @@ WorldCupBracket.Views = WorldCupBracket.Views || {};
 				}
 			}
 			return '';
+		}
+	});
+
+	WorldCupBracket.Views.ConsolationMatch = KnockoutMatch.extend({
+		initialize: function(options) {
+			KnockoutMatch.prototype.initialize.apply(this, arguments);
+			this.semiFinals = options.semiFinals;
+		},
+
+		setTeam : function() {
+			if (this.semiFinals.models[0].finished() && this.semiFinals.models[0].finished()) {
+				var results = [this.semiFinals.models[0].attributes.result, this.semiFinals.models[1].attributes.result];
+				var losers = [];
+				if (results[0][0] > results[0][1]) {
+					losers[0] = this.semiFinals.models[0].guest();
+				} else {
+					losers[0] = this.semiFinals.models[0].home();
+				}
+				if (results[1][0] > results[1][1]) {
+					losers[1] = this.semiFinals.models[1].guest();
+				} else {
+					losers[1] = this.semiFinals.models[1].home();
+				}
+
+				this.model.home(losers[0]);
+				this.model.guest(losers[1]);
+
+			}
+			this.render();
 		}
 	});
 

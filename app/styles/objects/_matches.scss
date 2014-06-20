@@ -66,6 +66,10 @@
   text-transform: uppercase;
 }
 
+.match__day {
+  width: 15px;
+}
+
 .match__date {
   width: 30px;
 }
@@ -83,6 +87,8 @@
   }
   .match__city {
     text-align: center;
+    position: relative;
+    z-index: 10;
   }
 }
 
@@ -91,7 +97,7 @@
 }
 
 .match__city {
-  width: 60px;
+  width: 70px;
 }
 
 .match--group .match__teams {
